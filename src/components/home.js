@@ -7,7 +7,7 @@ export default function HomeScreen() {
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Sobre Nossa Empresa</Text>
       <Text style={styles.description}>
-        A "ChurrascoMaster" é a sua parceira perfeita quando se trata de churrascos incríveis. 
+        A "SteakTalk" é a sua parceira perfeita quando se trata de churrascos incríveis. 
         Nossa jornada começou há mais de uma década, com a visão de proporcionar a todos uma experiência culinária excepcional ao ar livre. 
         Desde então, temos trabalhado incansavelmente para trazer à sua mesa os sabores autênticos de um bom churrasco.
       </Text>
