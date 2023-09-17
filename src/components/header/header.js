@@ -8,7 +8,7 @@ export default function Header({ route }) {
       <Text style={styles.screenName}>{route.name}</Text>
       <View style={styles.logoContainer}>
         <Image
-          source={require('../../../img/logo.png')}
+          source={require('../../../images/logo.png')}
           style={styles.logo}
         />
       </View>
