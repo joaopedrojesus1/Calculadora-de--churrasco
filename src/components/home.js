@@ -41,14 +41,14 @@ export default function HomeScreen() {
               latitude: -27.5954, // Latitude da localização fictícia
               longitude: -48.5480, // Longitude da localização fictícia
             }}
-            title="ChurrascoMaster"
+            title="SteakTalk"
             description="123 Rua do Churrasco Feliz"
           />
         </MapView>
       </View>
 
       <Text style={styles.address}>
-        ChurrascoMaster
+        SteakTalk
         {"\n"}
         Rua do Churrasco Feliz,123
         {"\n"}
