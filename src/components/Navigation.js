@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     height: 60,
-    backgroundColor: '#8C3041',
+    backgroundColor: '#D72519',
     alignItems: 'center',
   },
   tab: {

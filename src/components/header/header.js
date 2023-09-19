@@ -6,13 +6,9 @@ export default function Header({ route }) {
   return (
     <View style={styles.header}>
       <Text style={styles.screenName}>{route.name}</Text>
-      <View style={styles.logoContainer}>
-        <Image
-          source={require('../../../images/logo.png')}
-          style={styles.logo}
-        />
-      </View>
+      <Text style={styles.screenName2}>SteakTalk</Text>
     </View>
+
   );
 }
 
@@ -20,20 +16,29 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#8C3041', // Cor de churrasco
+    backgroundColor: '#fff', 
     paddingTop: 35,
+    height: 100,
+    borderBottomWidth: 2, 
+    borderBottomColor: '#000', 
   },
   screenName: {
-    flex: 1.3, // Toma a maior parte do espaço à esquerda
+    flex: 0.94,
     fontSize: 18,
     fontWeight: 'bold',
-    color: 'white',
+    color: '#000',
     marginLeft: 10,
+  },
+  screenName2: {
+    fontSize: 15,
+    textAlign: 'left',
+    fontWeight: 'bold',
+    color: '#000',
   },
   logoContainer: {
     flex: 2,
     position: 'relative',
-    justifyContent: 'center', // Centraliza a logo verticalmente
+    justifyContent: 'center', 
   },
   logo: {
     width: 80,
@@ -41,3 +46,4 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
 });
+

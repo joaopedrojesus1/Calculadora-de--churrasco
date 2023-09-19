@@ -63,30 +63,30 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
-    backgroundColor: '#690D0D',
+    backgroundColor: '#fff',
   },
   title: {
-    color: '#fff',
+    color: '#000',
     fontSize: 24,
     fontWeight: 'bold',
     marginTop: 16,
     marginBottom: 8,
   },
   titleloca: {
-    color: '#fff',
+    color: '#000',
     fontSize: 24,
     textAlign: 'center',
     fontWeight: 'bold',
     marginTop: 36,
   },
   description: {
-    color: '#fff',
+    color: '#000',
     fontSize: 16,
     marginTop: 16,
     marginBottom: 8
   },
   address: {
-    color: '#fff',
+    color: '#000',
     fontSize: 18,
     fontWeight: 'bold',
     marginTop: 16,
