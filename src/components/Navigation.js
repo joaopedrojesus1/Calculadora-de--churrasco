@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions, Animated } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
+
 
 export default function CustomTabBar({ state, descriptors, navigation }) {
   const [indicatorPosition] = useState(new Animated.Value(0));
@@ -39,6 +41,7 @@ export default function CustomTabBar({ state, descriptors, navigation }) {
             onPress={() => onTabPress(route, index)}
             style={styles.tab}
           >
+            <MaterialIcons name={options.tabBarIcon} size={20} color="#fff"/>
             <Text style={styles.tabText}>{label}</Text>
           </TouchableOpacity>
         );
@@ -52,7 +55,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     height: 60,
-    backgroundColor: '#D72519',
+    backgroundColor: '#A52A2A',
     alignItems: 'center',
   },
   tab: {

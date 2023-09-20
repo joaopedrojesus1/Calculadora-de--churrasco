@@ -30,16 +30,16 @@ export default function HomeScreen() {
         <MapView
           style={styles.map}
           initialRegion={{
-            latitude: -27.5954, // Latitude da localização fictícia
-            longitude: -48.5480, // Longitude da localização fictícia
+            latitude: -27.5954, // localização fictícia
+            longitude: -48.5480, // localização fictícia
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}
         >
           <Marker
             coordinate={{
-              latitude: -27.5954, // Latitude da localização fictícia
-              longitude: -48.5480, // Longitude da localização fictícia
+              latitude: -27.5954, // localização fictícia
+              longitude: -48.5480, // localização fictícia
             }}
             title="SteakTalk"
             description="123 Rua do Churrasco Feliz"
@@ -47,15 +47,13 @@ export default function HomeScreen() {
         </MapView>
       </View>
 
-      <Text style={styles.address}>
-        SteakTalk
-        {"\n"}
-        Rua do Churrasco Feliz,123
-        {"\n"}
-        Cidade do Churrasco, Estado da Satisfação
-        {"\n"}
-        CEP: 12345-678
-      </Text>
+        <Text style={styles.address}>
+          Rua do Churrasco Feliz,123
+          {"\n"}
+          Cidade do Churrasco, Estado da Satisfação
+          {"\n"}
+          CEP: 12345-678
+        </Text>
     </ScrollView>
   );
 }
@@ -63,48 +61,57 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
-    backgroundColor: '#fff',
+    backgroundColor: '#fff'
   },
   title: {
     color: '#000',
     fontSize: 24,
     fontWeight: 'bold',
     marginTop: 16,
-    marginBottom: 8,
+    marginBottom: 8
   },
   titleloca: {
     color: '#000',
     fontSize: 24,
     textAlign: 'center',
     fontWeight: 'bold',
-    marginTop: 36,
+    marginTop: 36
   },
   description: {
     color: '#000',
-    fontSize: 16,
-    marginTop: 16,
-    marginBottom: 8
+    fontSize: 20,
+    marginTop: 20,
+    textAlign: 'left',
+    paddingBottom:20,
+  
   },
   address: {
-    color: '#000',
-    fontSize: 18,
-    fontWeight: 'bold',
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '400',
     marginTop: 16,
+    backgroundColor: '#A52A2A',
+    borderRadius: 15,
+    padding: 25,
+    lineHeight: 35
   },
   image: {
     flex: 1,
     borderRadius: 25,
     height: 300,
-    width: 380,
-    resizeMode: 'cover',
+    width: '100%'
+        
   },  
   locationContainer: {
     backgroundColor: '#fff',
     borderRadius: 8,
     overflow: 'hidden',
-    marginTop: 16,
+    marginTop: 16
   },
   map: {
     height: 300,
+    marginTop:10,
+    marginBottom:20
+    
   },
 });

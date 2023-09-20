@@ -16,24 +16,24 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#fff', 
+    backgroundColor: '#A52A2A', 
     paddingTop: 35,
     height: 100,
-    borderBottomWidth: 2, 
-    borderBottomColor: '#000', 
+    borderBottomWidth: 3, 
+    borderBottomColor: '#fff', 
   },
   screenName: {
     flex: 0.94,
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#000',
+    color: '#fff',
     marginLeft: 10,
   },
   screenName2: {
     fontSize: 15,
-    textAlign: 'left',
+    
     fontWeight: 'bold',
-    color: '#000',
+    color: '#fff',
   },
   logoContainer: {
     flex: 2,
