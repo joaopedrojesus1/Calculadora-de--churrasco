@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import BottomTabNavigator from './src/components/Navigation';
 import HomeScreen from './src/components/home';
 import PedidosScreen from './src/components/pedidos';
@@ -13,6 +13,7 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
+
     <NavigationContainer styles={StyleSheet.body}>
     <Tab.Navigator
       tabBar={(props) => <BottomTabNavigator {...props} />}

@@ -1,91 +1,237 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import FaCow from 'react-native-vector-icons/FontAwesome5'; // Import the FontAwesome5 library
 import Icon from 'react-native-vector-icons/FontAwesome';
+import NumericInput from 'react-native-numeric-input';
+
+
 
 export default function PedidosScreen() {
   const [boiChecked, setBoiChecked] = useState(false);
   const [porcoChecked, setPorcoChecked] = useState(false);
   const [frangoChecked, setFrangoChecked] = useState(false);
+  const [aguaChecked, setAguaChecked] = useState(false);
+  const [refrigeranteChecked, setRefrigeranteChecked] = useState(false);
+  const [alcoolicaChecked, setAlcoolicaChecked] = useState(false);
+  const [arrozChecked, setArrozChecked] = useState(true);
+  const [farofaChecked, setFarofaChecked] = useState(true);
+  const [paodealhoChecked, setPaoDeAlhoChecked] = useState(true);
+  const [homens, setHomens] = useState(0);
+  const [mulheres, setMulheres] = useState(0);
+  const [criancas, setCriancas] = useState(0);
+  const [totalParticipants, setTotalParticipants] = useState(0);
+
+  const handleHomensChange = (value) => {
+    if (value + mulheres + criancas <= 50) {
+      setHomens(value);
+      setTotalParticipants(value + mulheres + criancas);
+    }
+  };
+
+  const handleMulheresChange = (value) => {
+    if (homens + value + criancas <= 50) {
+      setMulheres(value);
+      setTotalParticipants(homens + value + criancas);
+    }
+  };
+
+  const handleCriancasChange = (value) => {
+    if (homens + mulheres + value <= 50) {
+      setCriancas(value);
+      setTotalParticipants(homens + mulheres + value);
+    }
+  };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Como Funciona</Text>
-      <Text style={styles.text}>
-        Na "SteakTalk" você seleciona o que mais gosta da maneira mais simples possível,
-        só selecionar a opção desejada. Pode testar você mesmo abaixo:
-      </Text>
-{/* *************************************************************************************** */}
-      <Text style={styles.title}>Quantidade de Participantes</Text>
-      <Text style={styles.grayText}>No máximo 50 pessoas</Text>
-      <View style={styles.squareContainer}>
-        <View style={[styles.square]}>
-          <Icon name="female" size={60} color="#fff" />
-          <Text style={styles.squareText}>Mulheres</Text>
-        </View>
-        <View style={[styles.square]}>
-          <Icon name="male" size={60} color="#fff" />
-          <Text style={styles.squareText}>Homens</Text>
-        </View>
-        <View style={[styles.square]}>
-          <Icon name="child" size={60} color="#fff" />
-          <Text style={styles.squareText}>Crianças</Text>
-        </View>
-      </View>
-{/* ***************************************************************************************** */}
-<Text style={styles.titlebaixo}>Opções de Carnes</Text>
-      <View style={styles.meatOptions}>
-        <TouchableOpacity
-          style={[styles.meatOption, boiChecked && styles.checked]}
-          onPress={() => setBoiChecked(!boiChecked)}
-        >
-          <Icon name="cutlery" size={60} color="#fff" />
-          <Text style={styles.meatOptionText}>Boi</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.meatOption, porcoChecked && styles.checked]}
-          onPress={() => setPorcoChecked(!porcoChecked)}
-        >
-          <Icon name="cutlery" size={60} color="#fff" />
-          <Text style={styles.meatOptionText}>Porco</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.meatOption, frangoChecked && styles.checked]}
-          onPress={() => setFrangoChecked(!frangoChecked)}
-        >
-          <Icon name="cutlery" size={60} color="#fff" />
-          <Text style={styles.meatOptionText}>Frango</Text>
-        </TouchableOpacity>
-      </View>
-{/* ***************************************************************************************** */}
-      <Text style={styles.titlebaixo}>Opções de Bebidas</Text>
-      <Text style={styles.grayText}>Quantas opções desejar</Text>
-    </View>
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <View style={styles.container}>
+        <Text style={styles.title}>Como Funciona</Text>
+        <Text style={styles.text}>
+          Na "SteakTalk" você seleciona o que mais gosta da maneira mais simples possível,
+          só selecionar a opção desejada. Pode testar você mesmo abaixo:
+        </Text>
+        {/* *************************************************************************************** */}
+        <Text style={styles.title}>Quantidade de Participantes</Text>
+        <Text style={styles.grayText}>No máximo 50 pessoas</Text>
+        <View style={styles.squareContainer}>
+          {/* NumericInput for Homens */}
+          <View style={styles.squarecomNumeric}>
+            <View style={styles.square}>
+              <Icon name="male" size={60} color="#fff" />
+              <Text style={styles.squareText}>Homens</Text>
+            </View>
+            <NumericInput
+              value={homens}
+              onChange={handleHomensChange}
+              minValue={0}
+              maxValue={50 - mulheres - criancas}
+              totalWidth={100}
+              totalHeight={40}
+              iconSize={25}
+              step={1}
+              backgroundColor = "pink"
+              valueType="integer"
+              rounded
+              textColor="#fff"
+              iconStyle={{ color: 'black' }}
+              inputStyle={{ color: 'black' }}
+            />
+          </View>
+          
 
+          {/* NumericInput for Mulheres */}
+          <View style={styles.squarecomNumeric}>
+            <View style={[styles.square]}>
+              <Icon name="female" size={60} color="#fff" />
+              <Text style={styles.squareText}>Mulheres</Text>
+            </View>
+            <NumericInput
+                value={mulheres}
+                onChange={handleMulheresChange}
+                minValue={0}
+                maxValue={50 - homens - criancas}
+                totalWidth={100}
+                totalHeight={40}
+                iconSize={25}
+                step={1}
+                valueType="integer"
+                rounded
+                textColor="#fff"
+                iconStyle={{ color: 'black' }}
+                inputStyle={{ color: 'black' }}
+            />
+          </View>
+
+          {/* NumericInput for Crianças */}
+          <View style={styles.squarecomNumeric}>
+            <View style={[styles.square]}>
+              <Icon name="child" size={60} color="#fff" />
+              <Text style={styles.squareText}>Crianças</Text>
+            </View>
+            <NumericInput
+              value={criancas}
+              onChange={handleCriancasChange}
+              minValue={0}
+              maxValue={50 - homens - mulheres}
+              totalWidth={100}
+              totalHeight={40}
+              iconSize={25}
+              step={1}
+              valueType="integer"
+              rounded
+              textColor="#fff"
+              iconStyle={{ color: 'black' }}
+              inputStyle={{ color: 'black' }}
+              />
+          </View>
+        </View>
+        {/* ***************************************************************************************** */}
+        <Text style={styles.titlebaixo}>Opções de Carnes</Text>
+        <Text style={styles.grayText}>Quantas opções desejar</Text>
+        <View style={styles.meatOptions}>
+          <TouchableOpacity
+            style={[styles.meatOption, boiChecked && styles.checked]}
+            onPress={() => setBoiChecked(!boiChecked)}
+          >
+            <Icon name="cutlery" size={60} color="#fff" />
+            <Text style={styles.meatOptionText}>Boi</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.meatOption, porcoChecked && styles.checked]}
+            onPress={() => setPorcoChecked(!porcoChecked)} 
+          >
+            <Icon name="cutlery" size={60} color="#fff" />
+            <Text style={styles.meatOptionText}>Porco</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.meatOption, frangoChecked && styles.checked]}
+            onPress={() => setFrangoChecked(!frangoChecked)}
+          >
+            <Icon name="cutlery" size={60} color="#fff" />
+            <Text style={styles.meatOptionText}>Frango</Text>
+          </TouchableOpacity>
+        </View>
+        {/* ***************************************************************************************** */}
+        <Text style={styles.titlebaixo}>Opções de Bebidas</Text>
+        <Text style={styles.grayText}>Quantas opções desejar</Text>
+        <View style={styles.drinkOptions}>
+          <TouchableOpacity
+            style={[styles.drinkOption, aguaChecked && styles.checked]}
+            onPress={() => setAguaChecked(!aguaChecked)}
+          >
+            <Icon name="cutlery" size={60} color="#fff" />
+            <Text style={styles.drinkOptionText}>Água</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.drinkOption, refrigeranteChecked && styles.checked]}
+            onPress={() => setRefrigeranteChecked(!refrigeranteChecked)} 
+          >
+            <Icon name="cutlery" size={60} color="#fff" />
+            <Text style={styles.drinkOptionText}>Refrigerante</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.drinkOption, alcoolicaChecked && styles.checked]}
+            onPress={() => setAlcoolicaChecked(!alcoolicaChecked)}
+          >
+            <Icon name="cutlery" size={60} color="#fff" />
+            <Text style={styles.drinkOptionLargeText}>Bebida Alcoólica</Text>
+          </TouchableOpacity>
+        </View>
+        <Text style={styles.titlebaixo}>Acompanhamentos</Text>
+        <Text style={styles.grayText}>Obrigatórios!</Text>
+        <View style={styles.acompanhamentosOptions}>
+          <TouchableOpacity
+            style={[styles.acompOption, aguaChecked && styles.checked]}
+            onPress={() => setAguaChecked(!aguaChecked)}
+          >
+            <Icon name="cutlery" size={60} color="#fff" />
+            <Text style={styles.drinkOptionText}>Arroz</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.drinkOption, refrigeranteChecked && styles.checked]}
+            onPress={() => setRefrigeranteChecked(!refrigeranteChecked)} 
+          >
+            <Icon name="cutlery" size={60} color="#fff" />
+            <Text style={styles.drinkOptionText}>Farofa</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.drinkOption, alcoolicaChecked && styles.checked]}
+            onPress={() => setAlcoolicaChecked(!alcoolicaChecked)}
+          >
+            <Icon name="cutlery" size={60} color="#fff" />
+            <Text style={styles.drinkOptionText}>Pão de Alho</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </ScrollView>
 
   );
 }
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    
+  },
   container: {
     flex: 1,
     alignItems: 'center',
     padding: 16,
+    backgroundColor: '#fff'
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: 10
   },
   titlebaixo: {
     fontSize: 24,
     fontWeight: 'bold',
     marginTop: 40,
-    marginBottom: 10,
+    marginBottom: 10
   },
   text: {
-    fontSize: 16,
-    textAlign: 'center',
-    marginBottom: 40,
+    fontSize: 20,
+    marginBottom: 40
   },
   grayText: {
     fontSize: 14,
@@ -95,7 +241,7 @@ const styles = StyleSheet.create({
   squareContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 25,
+    marginTop: 25
   },
   square: {
     width: 100,
@@ -104,17 +250,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 4,
-    borderRadius: 10,
+    borderRadius: 10
   },
   squareText: {
     color: '#fff',
     fontSize: 16,
     marginTop: 5,
-    textAlign: 'center',
+    textAlign: 'center'
   },
   meatOptions: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginTop: 25,
   },
   meatOption: {
     width: 100,
@@ -124,14 +271,60 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 10,
     marginBottom: 10,
-    marginRight: 4,
+    marginRight: 4
   },
   meatOptionText: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: 16
   },
   checked: {
     borderColor: '#FFD700',
-    borderWidth: 2,
+    borderWidth: 5,
+  },
+  drinkOptions: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 25,
+  },
+  drinkOption: {
+    width: 100,
+    height: 100,
+    backgroundColor: '#A52A2A',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+    marginBottom: 10,
+    marginRight: 4
+  },
+  drinkOptionText: {
+    color: '#fff',
+    fontSize: 16
+  },
+  drinkOptionLargeText: {
+    color: '#fff',
+    fontSize: 12
+  },
+  acompanhamentosOptions: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 25,
+  },
+  acompanhamentosOption: {
+    width: 100,
+    height: 100,
+    backgroundColor: '#A52A2A',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+    marginBottom: 10,
+    marginRight: 4
+  },
+  acompanhamentosOptionText: {
+    color: '#fff',
+    fontSize: 16
+  },
+  acompanhamentosOptionLargeText: {
+    color: '#fff',
+    fontSize: 12
   },
 });
