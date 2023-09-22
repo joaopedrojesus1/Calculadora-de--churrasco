@@ -10,7 +10,6 @@ import {GoHomeFill} from 'react-icons/go'
 
 const Tab = createBottomTabNavigator();
 
-
 export default function App() {
   return (
 

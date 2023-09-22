@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Button } from 'react-native';
 import NumericInput from 'react-native-numeric-input';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { FontAwesome5 } from '@expo/vector-icons'; 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import handleFinalizar from './finalizar';
 
 export default function PedidosScreen() {
   const [boiChecked, setBoiChecked] = useState(false);
@@ -17,10 +18,21 @@ export default function PedidosScreen() {
   const [arrozChecked, setArrozChecked] = useState(true);
   const [farofaChecked, setFarofaChecked] = useState(true);
   const [paodealhoChecked, setPaoDeAlhoChecked] = useState(true);
+  const [copoChecked, setCopoChecked] = useState(false);
+  const [guardanapoChecked, setGuardanapoChecked] = useState(false);
+  const [carvaoChecked, setCarvaoChecked] = useState(false);
+  const [pratosChecked, setPratosChecked] = useState(false);
+  const [talheresChecked, setTalheresChecked] = useState(false);
+  const [acendedoresChecked, setAcendedoresChecked] = useState(false);
   const [homens, setHomens] = useState(0);
   const [mulheres, setMulheres] = useState(0);
   const [criancas, setCriancas] = useState(0);
   const [totalParticipants, setTotalParticipants] = useState(0);
+  const [selectedMeatType, setSelectedMeatType] = useState(null);
+  const [boiCuts, setBoiCuts] = useState([]);
+  const [porcoCuts, setPorcoCuts] = useState([]);
+  const [frangoCuts, setFrangoCuts] = useState([]);
+
 
   const handleHomensChange = (value) => {
     if (value + mulheres + criancas <= 50) {
@@ -42,6 +54,28 @@ export default function PedidosScreen() {
       setTotalParticipants(homens + mulheres + value);
     }
   };
+
+  const handleBoiClick = () => {
+    setSelectedMeatType('Boi');
+    setBoiCuts(['Corte 1', 'Corte 2', 'Corte 3']);
+    setPorcoCuts([]);
+    setFrangoCuts([]);
+  };
+  
+  const handlePorcoClick = () => {
+    setSelectedMeatType('Porco');
+    setPorcoCuts(['Corte 1', 'Corte 2', 'Corte 3']);
+    setBoiCuts([]);
+    setFrangoCuts([]);
+  };
+  
+  const handleFrangoClick = () => {
+    setSelectedMeatType('Frango');
+    setFrangoCuts(['Corte 1', 'Corte 2', 'Corte 3']);
+    setBoiCuts([]);
+    setPorcoCuts([]);
+  };
+  
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -149,7 +183,7 @@ export default function PedidosScreen() {
             style={[styles.meatOption, frangoChecked && styles.checked]}
             onPress={() => setFrangoChecked(!frangoChecked)}
           >
-            <MaterialCommunityIcon name="" size={60} color="#fff" />
+            <MaterialCommunityIcon name="food-drumstick" size={60} color="#fff" />
             <Text style={styles.meatOptionText}>Frango</Text>
           </TouchableOpacity>
         </View>
@@ -220,6 +254,69 @@ export default function PedidosScreen() {
             <Text style={styles.acompOptionText}>Pão de Alho</Text>
           </TouchableOpacity>
         </View>
+
+
+        {/* **************************************************************************************** */}
+        <Text style={styles.titlebaixo}>Material de Consumo</Text>
+        <Text style={styles.grayText}>Quantas opções desejar</Text>
+        <View style={styles.drinkOptions}>
+          {/* Primeira Linha */}
+          <View style={styles.materialOptions}>
+            <TouchableOpacity
+              style={[styles.materialOption, copoChecked && styles.checked]}
+              onPress={() => setCopoChecked(!copoChecked)}
+            >
+              <MaterialCommunityIcons name="cup" size={60} color="#fff" />
+              <Text style={styles.materialOptionText}>Copo Plástico</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.materialOption, guardanapoChecked && styles.checked]}
+              onPress={() => setGuardanapoChecked(!guardanapoChecked)} 
+            >
+              <MaterialCommunityIcons name="paper-roll" size={60} color="#fff" />
+              <Text style={styles.materialOptionText}>Guardanapo</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.materialOption, carvaoChecked && styles.checked]}
+              onPress={() => setCarvaoChecked(!carvaoChecked)}
+            >
+              <MaterialCommunityIcons name="grill" size={60} color="#fff" />
+              <Text style={styles.materialOptionText}>Carvão</Text>
+            </TouchableOpacity>
+        </View>
+          {/* Segunda Linha */}
+          <View style={styles.materialOptionContainer}>
+            <TouchableOpacity
+                style={[styles.materialOption, pratosChecked && styles.checked]}
+                onPress={() => setPratosChecked(!pratosChecked)}
+              >
+                <MaterialCommunityIcons name="circle-slice-8" size={60} color="#fff" />
+                <Text style={styles.materialOptionText}>Pratos</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.materialOption, talheresChecked && styles.checked]}
+                onPress={() => setTalheresChecked(!talheresChecked)} 
+              >
+                <MaterialCommunityIcons name="silverware-fork-knife" size={60} color="#fff" />
+                <Text style={styles.materialOptionText}>Talheres</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.materialOption, acendedoresChecked && styles.checked]}
+                onPress={() => setAcendedoresChecked(!acendedoresChecked)}
+              >
+                <MaterialCommunityIcons name="fire" size={60} color="#fff" />
+                <Text style={styles.materialOptionText}>Acendedores</Text>
+              </TouchableOpacity>
+          </View>
+        </View>
+
+        <TouchableOpacity style={styles.button} onPress={handleFinalizar}>
+          <Text style={styles.buttonText}>Finalizar</Text>
+        </TouchableOpacity> 
+
+        {/* **************************************************************************************** */}
+        
+
       </View>
     </ScrollView>
 
@@ -262,6 +359,7 @@ const styles = StyleSheet.create({
     marginTop: 25
   },
   square: {
+    elevation: 1,
     width: 120,
     height: 120,
     backgroundColor: '#A52A2A',
@@ -282,6 +380,7 @@ const styles = StyleSheet.create({
     marginTop: 25,
   },
   meatOption: {
+    elevation: 3,
     width: 120,
     height: 120,
     backgroundColor: '#A52A2A',
@@ -305,6 +404,7 @@ const styles = StyleSheet.create({
     marginTop: 25,
   },
   drinkOption: {
+    elevation: 3,
     width: 120,
     height: 120,
     backgroundColor: '#A52A2A',
@@ -328,6 +428,7 @@ const styles = StyleSheet.create({
     marginTop: 25,
   },
   acompOption: {
+    elevation: 3,
     width: 120,
     height: 120,
     backgroundColor: '#A52A2A',
@@ -345,4 +446,48 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 12
   },
+  materialOptions: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 25,
+  },
+  materialOption: {
+    elevation: 3,
+    width: 120,
+    height: 120,
+    backgroundColor: '#A52A2A',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+    marginBottom: 10,
+    marginRight: 4
+  },
+  materialOptionContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 25,
+  },
+  materialOptionText: {
+    color: '#fff',
+    fontSize: 16
+  },
+  materialOptionLargeText: {
+    color: '#fff',
+    fontSize: 12
+  },
+  button: {
+    color: '#fff',
+    backgroundColor: '#A52A2A',
+    padding: 15,
+    width: 180,
+    textAlign: 'center',
+    borderRadius: 15,
+    elevation: 5,
+    marginTop: 50,       
+  },
+  buttonText:{
+    color: '#fff',
+    textAlign:'center',
+    fontSize: 18,
+  }
 });

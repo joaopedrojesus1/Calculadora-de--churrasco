@@ -1,3 +1,6 @@
 {
-  "urlRandomness": "mBdI2DM"
+  "urlRandomness": "mBdI2DM",
+  "dev": true,
+  "minify": false,
+  "https": false
 }
