@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import FaCow from 'react-native-vector-icons/FontAwesome5'; // Import the FontAwesome5 library
-import Icon from 'react-native-vector-icons/FontAwesome';
 import NumericInput from 'react-native-numeric-input';
-
-
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { FontAwesome5 } from '@expo/vector-icons'; 
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function PedidosScreen() {
   const [boiChecked, setBoiChecked] = useState(false);
@@ -13,6 +13,7 @@ export default function PedidosScreen() {
   const [aguaChecked, setAguaChecked] = useState(false);
   const [refrigeranteChecked, setRefrigeranteChecked] = useState(false);
   const [alcoolicaChecked, setAlcoolicaChecked] = useState(false);
+  const [sucoChecked, setSucoChecked] = useState(false);
   const [arrozChecked, setArrozChecked] = useState(true);
   const [farofaChecked, setFarofaChecked] = useState(true);
   const [paodealhoChecked, setPaoDeAlhoChecked] = useState(true);
@@ -47,7 +48,7 @@ export default function PedidosScreen() {
       <View style={styles.container}>
         <Text style={styles.title}>Como Funciona</Text>
         <Text style={styles.text}>
-          Na "SteakTalk" você seleciona o que mais gosta da maneira mais simples possível,
+          Na "SteakTalk" você calcula e escolhe o que mais gosta da maneira mais simples possível,
           só selecionar a opção desejada. Pode testar você mesmo abaixo:
         </Text>
         {/* *************************************************************************************** */}
@@ -65,11 +66,10 @@ export default function PedidosScreen() {
               onChange={handleHomensChange}
               minValue={0}
               maxValue={50 - mulheres - criancas}
-              totalWidth={100}
+              totalWidth={120}
               totalHeight={40}
               iconSize={25}
               step={1}
-              backgroundColor = "pink"
               valueType="integer"
               rounded
               textColor="#fff"
@@ -90,7 +90,7 @@ export default function PedidosScreen() {
                 onChange={handleMulheresChange}
                 minValue={0}
                 maxValue={50 - homens - criancas}
-                totalWidth={100}
+                totalWidth={120}
                 totalHeight={40}
                 iconSize={25}
                 step={1}
@@ -113,7 +113,7 @@ export default function PedidosScreen() {
               onChange={handleCriancasChange}
               minValue={0}
               maxValue={50 - homens - mulheres}
-              totalWidth={100}
+              totalWidth={120}
               totalHeight={40}
               iconSize={25}
               step={1}
@@ -133,21 +133,23 @@ export default function PedidosScreen() {
             style={[styles.meatOption, boiChecked && styles.checked]}
             onPress={() => setBoiChecked(!boiChecked)}
           >
-            <Icon name="cutlery" size={60} color="#fff" />
+            <MaterialCommunityIcon name="cow" size={60} color="#fff" />
             <Text style={styles.meatOptionText}>Boi</Text>
           </TouchableOpacity>
+
           <TouchableOpacity
             style={[styles.meatOption, porcoChecked && styles.checked]}
-            onPress={() => setPorcoChecked(!porcoChecked)} 
+            onPress={() => setPorcoChecked(!porcoChecked)}
           >
-            <Icon name="cutlery" size={60} color="#fff" />
+            <MaterialCommunityIcon name="pig" size={60} color="#fff" />
             <Text style={styles.meatOptionText}>Porco</Text>
           </TouchableOpacity>
+
           <TouchableOpacity
             style={[styles.meatOption, frangoChecked && styles.checked]}
             onPress={() => setFrangoChecked(!frangoChecked)}
           >
-            <Icon name="cutlery" size={60} color="#fff" />
+            <MaterialCommunityIcon name="" size={60} color="#fff" />
             <Text style={styles.meatOptionText}>Frango</Text>
           </TouchableOpacity>
         </View>
@@ -155,51 +157,67 @@ export default function PedidosScreen() {
         <Text style={styles.titlebaixo}>Opções de Bebidas</Text>
         <Text style={styles.grayText}>Quantas opções desejar</Text>
         <View style={styles.drinkOptions}>
-          <TouchableOpacity
-            style={[styles.drinkOption, aguaChecked && styles.checked]}
-            onPress={() => setAguaChecked(!aguaChecked)}
-          >
-            <Icon name="cutlery" size={60} color="#fff" />
-            <Text style={styles.drinkOptionText}>Água</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.drinkOption, refrigeranteChecked && styles.checked]}
-            onPress={() => setRefrigeranteChecked(!refrigeranteChecked)} 
-          >
-            <Icon name="cutlery" size={60} color="#fff" />
-            <Text style={styles.drinkOptionText}>Refrigerante</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.drinkOption, alcoolicaChecked && styles.checked]}
-            onPress={() => setAlcoolicaChecked(!alcoolicaChecked)}
-          >
-            <Icon name="cutlery" size={60} color="#fff" />
-            <Text style={styles.drinkOptionLargeText}>Bebida Alcoólica</Text>
-          </TouchableOpacity>
+          {/* Primeira Linha */}
+          <View style={styles.drinkOptionContainer}>
+            <TouchableOpacity
+              style={[styles.drinkOption, aguaChecked && styles.checked]}
+              onPress={() => setAguaChecked(!aguaChecked)}
+            >
+              <MaterialCommunityIcons name="cup-water" size={60} color="#fff" />
+              <Text style={styles.drinkOptionText}>Água</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.drinkOption, refrigeranteChecked && styles.checked]}
+              onPress={() => setRefrigeranteChecked(!refrigeranteChecked)} 
+            >
+              <MaterialCommunityIcons name="bottle-soda-classic" size={60} color="#fff" />
+              <Text style={styles.drinkOptionText}>Refrigerante</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.drinkOption, alcoolicaChecked && styles.checked]}
+              onPress={() => setAlcoolicaChecked(!alcoolicaChecked)}
+            >
+              <FontAwesome5 name="wine-bottle" size={60} color="#fff" />
+              <Text style={styles.drinkOptionLargeText}>Bebida Alcoólica</Text>
+            </TouchableOpacity>
+          </View>
+          {/* Segunda Linha */}
+          <View style={styles.drinkOptionContainer}>
+            <TouchableOpacity
+              style={[styles.drinkOption, sucoChecked && styles.checked]}
+              onPress={() => setSucoChecked(!sucoChecked)}
+            >
+              <FontAwesome5 name="glass-whiskey" size={60} color="#fff" />
+              <Text style={styles.drinkOptionText}>Suco</Text>
+            </TouchableOpacity>
+          </View>
         </View>
+
+
+        {/* **************************************************************************************** */}
         <Text style={styles.titlebaixo}>Acompanhamentos</Text>
         <Text style={styles.grayText}>Obrigatórios!</Text>
         <View style={styles.acompanhamentosOptions}>
           <TouchableOpacity
-            style={[styles.acompOption, aguaChecked && styles.checked]}
-            onPress={() => setAguaChecked(!aguaChecked)}
+            style={[styles.acompOption, arrozChecked && styles.checked]}
+            onPress={() => setArrozChecked(!arrozChecked)}
           >
-            <Icon name="cutlery" size={60} color="#fff" />
-            <Text style={styles.drinkOptionText}>Arroz</Text>
+            <MaterialCommunityIcons name="rice" size={60} color="#fff" />
+            <Text style={styles.acompOptionText}>Arroz</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.drinkOption, refrigeranteChecked && styles.checked]}
-            onPress={() => setRefrigeranteChecked(!refrigeranteChecked)} 
+            style={[styles.acompOption, farofaChecked && styles.checked]}
+            onPress={() => setFarofaChecked(!farofaChecked)} 
           >
             <Icon name="cutlery" size={60} color="#fff" />
-            <Text style={styles.drinkOptionText}>Farofa</Text>
+            <Text style={styles.acompOptionText}>Farofa</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.drinkOption, alcoolicaChecked && styles.checked]}
-            onPress={() => setAlcoolicaChecked(!alcoolicaChecked)}
+            style={[styles.acompOption, paodealhoChecked && styles.checked]}
+            onPress={() => setPaoDeAlhoChecked(!paodealhoChecked)}
           >
-            <Icon name="cutlery" size={60} color="#fff" />
-            <Text style={styles.drinkOptionText}>Pão de Alho</Text>
+            <FontAwesome5 name="bread-slice" size={60} color="#fff" />
+            <Text style={styles.acompOptionText}>Pão de Alho</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -244,8 +262,8 @@ const styles = StyleSheet.create({
     marginTop: 25
   },
   square: {
-    width: 100,
-    height: 100,
+    width: 120,
+    height: 120,
     backgroundColor: '#A52A2A',
     alignItems: 'center',
     justifyContent: 'center',
@@ -264,8 +282,8 @@ const styles = StyleSheet.create({
     marginTop: 25,
   },
   meatOption: {
-    width: 100,
-    height: 100,
+    width: 120,
+    height: 120,
     backgroundColor: '#A52A2A',
     alignItems: 'center',
     justifyContent: 'center',
@@ -281,14 +299,14 @@ const styles = StyleSheet.create({
     borderColor: '#FFD700',
     borderWidth: 5,
   },
-  drinkOptions: {
+  drinkOptionContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 25,
   },
   drinkOption: {
-    width: 100,
-    height: 100,
+    width: 120,
+    height: 120,
     backgroundColor: '#A52A2A',
     alignItems: 'center',
     justifyContent: 'center',
@@ -309,9 +327,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: 25,
   },
-  acompanhamentosOption: {
-    width: 100,
-    height: 100,
+  acompOption: {
+    width: 120,
+    height: 120,
     backgroundColor: '#A52A2A',
     alignItems: 'center',
     justifyContent: 'center',
@@ -319,7 +337,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginRight: 4
   },
-  acompanhamentosOptionText: {
+  acompOptionText: {
     color: '#fff',
     fontSize: 16
   },
