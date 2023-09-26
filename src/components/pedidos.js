@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Button } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import NumericInput from 'react-native-numeric-input';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { FontAwesome5 } from '@expo/vector-icons'; 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import handleFinalizar from './finalizar';
+import { useNavigation } from '@react-navigation/native';
 
 export default function PedidosScreen() {
   const [boiChecked, setBoiChecked] = useState(false);
@@ -75,7 +75,6 @@ export default function PedidosScreen() {
     setBoiCuts([]);
     setPorcoCuts([]);
   };
-  
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -165,7 +164,10 @@ export default function PedidosScreen() {
         <View style={styles.meatOptions}>
           <TouchableOpacity
             style={[styles.meatOption, boiChecked && styles.checked]}
-            onPress={() => setBoiChecked(!boiChecked)}
+            onPress={() => {
+              setBoiChecked(!boiChecked);
+              handleBoiClick();
+            }}
           >
             <MaterialCommunityIcon name="cow" size={60} color="#fff" />
             <Text style={styles.meatOptionText}>Boi</Text>
@@ -173,7 +175,10 @@ export default function PedidosScreen() {
 
           <TouchableOpacity
             style={[styles.meatOption, porcoChecked && styles.checked]}
-            onPress={() => setPorcoChecked(!porcoChecked)}
+            onPress={() => {
+              setPorcoChecked(!porcoChecked);
+              handlePorcoClick();
+            }}
           >
             <MaterialCommunityIcon name="pig" size={60} color="#fff" />
             <Text style={styles.meatOptionText}>Porco</Text>
@@ -181,7 +186,10 @@ export default function PedidosScreen() {
 
           <TouchableOpacity
             style={[styles.meatOption, frangoChecked && styles.checked]}
-            onPress={() => setFrangoChecked(!frangoChecked)}
+            onPress={() => {
+              setFrangoChecked(!frangoChecked);
+              handleFrangoClick();
+            }}
           >
             <MaterialCommunityIcon name="food-drumstick" size={60} color="#fff" />
             <Text style={styles.meatOptionText}>Frango</Text>
@@ -255,7 +263,6 @@ export default function PedidosScreen() {
           </TouchableOpacity>
         </View>
 
-
         {/* **************************************************************************************** */}
         <Text style={styles.titlebaixo}>Material de Consumo</Text>
         <Text style={styles.grayText}>Quantas opções desejar</Text>
@@ -283,7 +290,7 @@ export default function PedidosScreen() {
               <MaterialCommunityIcons name="grill" size={60} color="#fff" />
               <Text style={styles.materialOptionText}>Carvão</Text>
             </TouchableOpacity>
-        </View>
+          </View>
           {/* Segunda Linha */}
           <View style={styles.materialOptionContainer}>
             <TouchableOpacity
@@ -310,43 +317,65 @@ export default function PedidosScreen() {
           </View>
         </View>
 
-        <TouchableOpacity style={styles.button} onPress={handleFinalizar}>
+        {/* Exibe os cortes de carne selecionados */}
+        {selectedMeatType && (
+          <View style={{ marginTop: 20 }}>
+            <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Cortes de {selectedMeatType}</Text>
+            <ScrollView horizontal>
+              {selectedMeatType === 'Boi' && boiCuts.map((cut, index) => (
+                <View key={index} style={{ marginRight: 20 }}>
+                  <Text>{cut}</Text>
+                </View>
+              ))}
+              {selectedMeatType === 'Porco' && porcoCuts.map((cut, index) => (
+                <View key={index} style={{ marginRight: 20 }}>
+                  <Text>{cut}</Text>
+                </View>
+              ))}
+              {selectedMeatType === 'Frango' && frangoCuts.map((cut, index) => (
+                <View key={index} style={{ marginRight: 20 }}>
+                  <Text>{cut}</Text>
+                </View>
+              ))}
+            </ScrollView>
+          </View>
+        )}
+
+        <TouchableOpacity style={styles.buttan} onPress={() => navigation.navigate('Extrato')}>
           <Text style={styles.buttonText}>Finalizar</Text>
-        </TouchableOpacity> 
+        </TouchableOpacity>
+
 
         {/* **************************************************************************************** */}
-        
-
       </View>
     </ScrollView>
-
   );
 }
 
 const styles = StyleSheet.create({
   scrollContainer: {
-    
+    flexGrow: 1,
+    backgroundColor: '#fff',
   },
   container: {
     flex: 1,
     alignItems: 'center',
     padding: 16,
-    backgroundColor: '#fff'
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 10
+    marginBottom: 10,
   },
   titlebaixo: {
     fontSize: 24,
     fontWeight: 'bold',
     marginTop: 40,
-    marginBottom: 10
+    marginBottom: 10,
   },
   text: {
     fontSize: 20,
-    marginBottom: 40
+    marginBottom: 40,
   },
   grayText: {
     fontSize: 14,
@@ -356,7 +385,7 @@ const styles = StyleSheet.create({
   squareContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 25
+    marginTop: 25,
   },
   square: {
     elevation: 1,
@@ -366,13 +395,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 4,
-    borderRadius: 10
+    borderRadius: 10,
   },
   squareText: {
     color: '#fff',
     fontSize: 16,
     marginTop: 5,
-    textAlign: 'center'
+    textAlign: 'center',
+  },
+  squarecomNumeric: {
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   meatOptions: {
     flexDirection: 'row',
@@ -388,11 +421,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 10,
     marginBottom: 10,
-    marginRight: 4
+    marginRight: 4,
   },
   meatOptionText: {
     color: '#fff',
-    fontSize: 16
+    fontSize: 16,
   },
   checked: {
     borderColor: '#FFD700',
@@ -412,15 +445,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 10,
     marginBottom: 10,
-    marginRight: 4
+    marginRight: 4,
   },
   drinkOptionText: {
     color: '#fff',
-    fontSize: 16
+    fontSize: 16,
   },
   drinkOptionLargeText: {
     color: '#fff',
-    fontSize: 12
+    fontSize: 12,
   },
   acompanhamentosOptions: {
     flexDirection: 'row',
@@ -436,15 +469,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 10,
     marginBottom: 10,
-    marginRight: 4
+    marginRight: 4,
   },
   acompOptionText: {
     color: '#fff',
-    fontSize: 16
+    fontSize: 16,
   },
   acompanhamentosOptionLargeText: {
     color: '#fff',
-    fontSize: 12
+    fontSize: 12,
   },
   materialOptions: {
     flexDirection: 'row',
@@ -460,7 +493,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 10,
     marginBottom: 10,
-    marginRight: 4
+    marginRight: 4,
   },
   materialOptionContainer: {
     flexDirection: 'row',
@@ -469,25 +502,25 @@ const styles = StyleSheet.create({
   },
   materialOptionText: {
     color: '#fff',
-    fontSize: 16
+    fontSize: 16,
   },
   materialOptionLargeText: {
     color: '#fff',
-    fontSize: 12
+    fontSize: 12,
   },
   button: {
-    color: '#fff',
     backgroundColor: '#A52A2A',
-    padding: 15,
-    width: 180,
-    textAlign: 'center',
-    borderRadius: 15,
-    elevation: 5,
-    marginTop: 50,       
+    borderRadius: 10,
+    width: 250,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
   },
-  buttonText:{
+  buttonText: {
     color: '#fff',
-    textAlign:'center',
     fontSize: 18,
-  }
+    fontWeight: 'bold',
+  },
 });
+
