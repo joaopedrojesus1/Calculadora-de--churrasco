@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, ScrollView,} from 'react-native';
 import NumericInput from 'react-native-numeric-input';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { FontAwesome5 } from '@expo/vector-icons'; 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {CheckBox} from '@react-native-community/checkbox'
 import { useNavigation } from '@react-navigation/native';
 
 export default function PedidosScreen() {
@@ -29,10 +30,10 @@ export default function PedidosScreen() {
   const [criancas, setCriancas] = useState(0);
   const [totalParticipants, setTotalParticipants] = useState(0);
   const [selectedMeatType, setSelectedMeatType] = useState(null);
-  const [boiCuts, setBoiCuts] = useState([]);
-  const [porcoCuts, setPorcoCuts] = useState([]);
-  const [frangoCuts, setFrangoCuts] = useState([]);
-
+  const [selectedBoiCuts, setSelectedBoiCuts] = useState([]);
+  const [selectedPorcoCuts, setSelectedPorcoCuts] = useState([]);
+  const [selectedFrangoCuts, setSelectedFrangoCuts] = useState([]);
+  
 
   const handleHomensChange = (value) => {
     if (value + mulheres + criancas <= 50) {
@@ -57,24 +58,27 @@ export default function PedidosScreen() {
 
   const handleBoiClick = () => {
     setSelectedMeatType('Boi');
-    setBoiCuts(['Corte 1', 'Corte 2', 'Corte 3']);
+    setSelectedBoiCuts(['Corte 1', 'Corte 2', 'Corte 3']);
     setPorcoCuts([]);
     setFrangoCuts([]);
   };
   
   const handlePorcoClick = () => {
     setSelectedMeatType('Porco');
-    setPorcoCuts(['Corte 1', 'Corte 2', 'Corte 3']);
+    setSelectedPorcoCuts(['Corte 1', 'Corte 2', 'Corte 3']);
     setBoiCuts([]);
     setFrangoCuts([]);
   };
   
   const handleFrangoClick = () => {
     setSelectedMeatType('Frango');
-    setFrangoCuts(['Corte 1', 'Corte 2', 'Corte 3']);
+    setSelectedFrangoCuts(['Corte 1', 'Corte 2', 'Corte 3']);
     setBoiCuts([]);
     setPorcoCuts([]);
   };
+  
+
+  
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -195,6 +199,39 @@ export default function PedidosScreen() {
             <Text style={styles.meatOptionText}>Frango</Text>
           </TouchableOpacity>
         </View>
+            {/* Exibe os cortes de carne selecionados */}
+            {selectedMeatType && (
+              <View style={{ marginTop: 20 }}>
+                <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Cortes de {selectedMeatType}</Text>
+                {selectedMeatType === 'Boi' && selectedBoiCuts.map((cut, index) => (
+                  <View key={index} style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <CheckBox
+                      value={selectedBoiCuts.includes(cut)}
+                      onValueChange={() => handleCutSelection('Boi', cut)}
+                    />
+                    <Text>{cut}</Text>
+                  </View>
+                ))}
+                {selectedMeatType === 'Porco' && selectedPorcoCuts.map((cut, index) => (
+                  <View key={index} style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <CheckBox
+                      value={selectedPorcoCuts.includes(cut)}
+                      onValueChange={() => handleCutSelection('Porco', cut)}
+                    />
+                    <Text>{cut}</Text>
+                  </View>
+                ))}
+                {selectedMeatType === 'Frango' && selectedFrangoCuts.map((cut, index) => (
+                  <View key={index} style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <CheckBox
+                      value={selectedFrangoCuts.includes(cut)}
+                      onValueChange={() => handleCutSelection('Frango', cut)}
+                    />
+                    <Text>{cut}</Text>
+                  </View>
+                ))}
+              </View>
+            )}
         {/* ***************************************************************************************** */}
         <Text style={styles.titlebaixo}>Opções de Bebidas</Text>
         <Text style={styles.grayText}>Quantas opções desejar</Text>
@@ -317,29 +354,6 @@ export default function PedidosScreen() {
           </View>
         </View>
 
-        {/* Exibe os cortes de carne selecionados */}
-        {selectedMeatType && (
-          <View style={{ marginTop: 20 }}>
-            <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Cortes de {selectedMeatType}</Text>
-            <ScrollView horizontal>
-              {selectedMeatType === 'Boi' && boiCuts.map((cut, index) => (
-                <View key={index} style={{ marginRight: 20 }}>
-                  <Text>{cut}</Text>
-                </View>
-              ))}
-              {selectedMeatType === 'Porco' && porcoCuts.map((cut, index) => (
-                <View key={index} style={{ marginRight: 20 }}>
-                  <Text>{cut}</Text>
-                </View>
-              ))}
-              {selectedMeatType === 'Frango' && frangoCuts.map((cut, index) => (
-                <View key={index} style={{ marginRight: 20 }}>
-                  <Text>{cut}</Text>
-                </View>
-              ))}
-            </ScrollView>
-          </View>
-        )}
 
         <TouchableOpacity style={styles.buttan} onPress={() => navigation.navigate('Extrato')}>
           <Text style={styles.buttonText}>Finalizar</Text>
