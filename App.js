@@ -25,9 +25,9 @@ export default function App() {
           tabBarLabel: 'Home',
           tabBarIcon: 'home-filled'
         }}/>
-      <Tab.Screen name="Pedidos" component={PedidosScreen}  styles={StyleSheet.pedidos}  
+      <Tab.Screen name="Extrato" component={PedidosScreen}  styles={StyleSheet.pedidos}  
         options={{
-          tabBarLabel: 'Pedidos',
+          tabBarLabel: 'Extrato',
           tabBarIcon: 'fastfood'
         }}/>
     </Tab.Navigator>
