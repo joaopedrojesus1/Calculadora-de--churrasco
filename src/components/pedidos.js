@@ -29,10 +29,7 @@ export default function PedidosScreen() {
   const [mulheres, setMulheres] = useState(0);
   const [criancas, setCriancas] = useState(0);
   const [totalParticipants, setTotalParticipants] = useState(0);
-  const [selectedMeatType, setSelectedMeatType] = useState(null);
-  const [selectedBoiCuts, setSelectedBoiCuts] = useState([]);
-  const [selectedPorcoCuts, setSelectedPorcoCuts] = useState([]);
-  const [selectedFrangoCuts, setSelectedFrangoCuts] = useState([]);
+
   
 
   const handleHomensChange = (value) => {
@@ -56,26 +53,6 @@ export default function PedidosScreen() {
     }
   };
 
-  const handleBoiClick = () => {
-    setSelectedMeatType('Boi');
-    setSelectedBoiCuts(['Corte 1', 'Corte 2', 'Corte 3']);
-    setPorcoCuts([]);
-    setFrangoCuts([]);
-  };
-  
-  const handlePorcoClick = () => {
-    setSelectedMeatType('Porco');
-    setSelectedPorcoCuts(['Corte 1', 'Corte 2', 'Corte 3']);
-    setBoiCuts([]);
-    setFrangoCuts([]);
-  };
-  
-  const handleFrangoClick = () => {
-    setSelectedMeatType('Frango');
-    setSelectedFrangoCuts(['Corte 1', 'Corte 2', 'Corte 3']);
-    setBoiCuts([]);
-    setPorcoCuts([]);
-  };
   
 
   
@@ -170,7 +147,7 @@ export default function PedidosScreen() {
             style={[styles.meatOption, boiChecked && styles.checked]}
             onPress={() => {
               setBoiChecked(!boiChecked);
-              handleBoiClick();
+            
             }}
           >
             <MaterialCommunityIcon name="cow" size={60} color="#fff" />
@@ -181,7 +158,7 @@ export default function PedidosScreen() {
             style={[styles.meatOption, porcoChecked && styles.checked]}
             onPress={() => {
               setPorcoChecked(!porcoChecked);
-              handlePorcoClick();
+            
             }}
           >
             <MaterialCommunityIcon name="pig" size={60} color="#fff" />
@@ -192,46 +169,13 @@ export default function PedidosScreen() {
             style={[styles.meatOption, frangoChecked && styles.checked]}
             onPress={() => {
               setFrangoChecked(!frangoChecked);
-              handleFrangoClick();
+            
             }}
           >
             <MaterialCommunityIcon name="food-drumstick" size={60} color="#fff" />
             <Text style={styles.meatOptionText}>Frango</Text>
           </TouchableOpacity>
         </View>
-            {/* Exibe os cortes de carne selecionados */}
-            {selectedMeatType && (
-              <View style={{ marginTop: 20 }}>
-                <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Cortes de {selectedMeatType}</Text>
-                {selectedMeatType === 'Boi' && selectedBoiCuts.map((cut, index) => (
-                  <View key={index} style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <CheckBox
-                      value={selectedBoiCuts.includes(cut)}
-                      onValueChange={() => handleCutSelection('Boi', cut)}
-                    />
-                    <Text>{cut}</Text>
-                  </View>
-                ))}
-                {selectedMeatType === 'Porco' && selectedPorcoCuts.map((cut, index) => (
-                  <View key={index} style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <CheckBox
-                      value={selectedPorcoCuts.includes(cut)}
-                      onValueChange={() => handleCutSelection('Porco', cut)}
-                    />
-                    <Text>{cut}</Text>
-                  </View>
-                ))}
-                {selectedMeatType === 'Frango' && selectedFrangoCuts.map((cut, index) => (
-                  <View key={index} style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <CheckBox
-                      value={selectedFrangoCuts.includes(cut)}
-                      onValueChange={() => handleCutSelection('Frango', cut)}
-                    />
-                    <Text>{cut}</Text>
-                  </View>
-                ))}
-              </View>
-            )}
         {/* ***************************************************************************************** */}
         <Text style={styles.titlebaixo}>Opções de Bebidas</Text>
         <Text style={styles.grayText}>Quantas opções desejar</Text>
@@ -355,7 +299,7 @@ export default function PedidosScreen() {
         </View>
 
 
-        <TouchableOpacity style={styles.buttan} onPress={() => navigation.navigate('Extrato')}>
+        <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>Finalizar</Text>
         </TouchableOpacity>
 
@@ -525,11 +469,11 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#A52A2A',
     borderRadius: 10,
-    width: 250,
+    width: 200,
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 20,
+    marginTop: 40,
   },
   buttonText: {
     color: '#fff',
