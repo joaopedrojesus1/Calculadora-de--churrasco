@@ -29,6 +29,9 @@ export default function PedidosScreen() {
   const [mulheres, setMulheres] = useState(0);
   const [criancas, setCriancas] = useState(0);
   const [totalParticipants, setTotalParticipants] = useState(0);
+  const [carneTipoVisible, setCarneTipoVisible] = useState(false);
+  const [bebidaOptionsVisible, setBebidaOptionsVisible] = useState(false);
+
 
   
 
@@ -52,6 +55,14 @@ export default function PedidosScreen() {
       setTotalParticipants(homens + mulheres + value);
     }
   };
+  const toggleCarneOptions = () => {
+    setCarneTipoVisible(!carneTipoVisible);
+  };
+  
+  const toggleBebidaOptions = () => {
+    setBebidaOptionsVisible(!bebidaOptionsVisible);
+  };
+  
 
   
 
@@ -143,33 +154,71 @@ export default function PedidosScreen() {
         <Text style={styles.titlebaixo}>Opções de Carnes</Text>
         <Text style={styles.grayText}>Quantas opções desejar</Text>
         <View style={styles.meatOptions}>
-          <TouchableOpacity
-            style={[styles.meatOption, boiChecked && styles.checked]}
-            onPress={() => {
-              setBoiChecked(!boiChecked);
-            
-            }}
+
+
+        {/*----------- Bovinatipo -----------*/}
+        <TouchableOpacity
+            style={[styles.meatOption, carneTipoVisible && styles.checked]}
+            onPress={toggleCarneOptions}
           >
             <MaterialCommunityIcon name="cow" size={60} color="#fff" />
             <Text style={styles.meatOptionText}>Boi</Text>
           </TouchableOpacity>
 
+          {carneTipoVisible && (
+              <View>
+                {/* Tip de Carne */}
+                <TouchableOpacity
+                  style={styles.meatOption}
+                  onPress={() => {
+                    // Lógica para tratar a seleção de Coxão Duro aqui
+                  }}
+                >
+                  <MaterialCommunityIcon name="food-steak" size={60} color="#fff" />
+                  <Text style={styles.meatOptionText}>Coxão Duro</Text>
+                </TouchableOpacity>
+            
+                <TouchableOpacity
+                  style={styles.meatOption}
+                  onPress={() => {
+                    // Lógica para tratar a seleção de Bisteca aqui
+                  }}
+                >
+                  <MaterialCommunityIcon name="food-drumstick" size={60} color="#fff" />
+                  <Text style={styles.meatOptionText}>Bisteca</Text>
+                </TouchableOpacity>
+            
+                <TouchableOpacity
+                  style={styles.meatOption}
+                  onPress={() => {
+                    // Lógica para tratar a seleção de Contra Filé aqui
+                  }}
+                >
+                  <MaterialCommunityIcon name="food-fork-drink" size={60} color="#fff" />
+                  <Text style={styles.meatOptionText}>Contra Filé</Text>
+                </TouchableOpacity>
+                {/* Outras opções de carne podem ser adicionadas aqui */}
+              </View>
+          )}
+
+
+          {/* ----------------porcotipo ----------------*/}
           <TouchableOpacity
             style={[styles.meatOption, porcoChecked && styles.checked]}
             onPress={() => {
-              setPorcoChecked(!porcoChecked);
-            
+              setPorcoChecked(!porcoChecked);           
             }}
           >
             <MaterialCommunityIcon name="pig" size={60} color="#fff" />
             <Text style={styles.meatOptionText}>Porco</Text>
           </TouchableOpacity>
+  
 
+          {/* ----------------Frangotipo ----------------*/}
           <TouchableOpacity
             style={[styles.meatOption, frangoChecked && styles.checked]}
             onPress={() => {
-              setFrangoChecked(!frangoChecked);
-            
+              setFrangoChecked(!frangoChecked);           
             }}
           >
             <MaterialCommunityIcon name="food-drumstick" size={60} color="#fff" />

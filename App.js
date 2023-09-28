@@ -3,8 +3,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import BottomTabNavigator from './src/components/Navigation';
-import HomeScreen from './src/components/home';
-import PedidosScreen from './src/components/pedidos';
+import HomeScreen from './src/pages/home';
+import PedidosScreen from './src/pages/pedidos';
 import Header from './src/components/header/header';
 import {GoHomeFill} from 'react-icons/go'
 
