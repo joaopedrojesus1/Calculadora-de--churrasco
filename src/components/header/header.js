@@ -2,10 +2,12 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
 
+
 export default function Header({ route }) {
   return (
     <View style={styles.header}>
       <Text style={styles.screenName}>{route.name}</Text>
+      <Image source= {require('../../../images/logo2.png')} style={styles.logo}/>
       <Text style={styles.screenName2}>SteakTalk</Text>
     </View>
 
@@ -35,15 +37,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#fff',
   },
-  logoContainer: {
-    flex: 2,
-    position: 'relative',
-    justifyContent: 'center', 
-  },
   logo: {
-    width: 80,
-    height: 100,
+    width: 55,
     resizeMode: 'contain',
+    marginRight: 91,
   },
 });
 

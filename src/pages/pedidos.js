@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, ScrollView,} from 'react-native';
+import ExtratoScreen from '../components/extrato';
 import NumericInput from 'react-native-numeric-input';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { FontAwesome5 } from '@expo/vector-icons'; 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {CheckBox} from '@react-native-community/checkbox'
 import { useNavigation } from '@react-navigation/native';
 
 export default function PedidosScreen() {
+  const navigation = useNavigation();
   const [boiChecked, setBoiChecked] = useState(false);
   const [porcoChecked, setPorcoChecked] = useState(false);
   const [frangoChecked, setFrangoChecked] = useState(false);
@@ -30,7 +31,9 @@ export default function PedidosScreen() {
   const [criancas, setCriancas] = useState(0);
   const [totalParticipants, setTotalParticipants] = useState(0);
   const [carneTipoVisible, setCarneTipoVisible] = useState(false);
-  const [bebidaOptionsVisible, setBebidaOptionsVisible] = useState(false);
+  
+
+
 
 
   
@@ -59,9 +62,11 @@ export default function PedidosScreen() {
     setCarneTipoVisible(!carneTipoVisible);
   };
   
-  const toggleBebidaOptions = () => {
-    setBebidaOptionsVisible(!bebidaOptionsVisible);
+  const handleFinalizarPress = () => {
+    // Você pode adicionar qualquer lógica adicional aqui, se necessário
+    navigation.navigate('Extrato');
   };
+  
   
 
   
@@ -158,48 +163,49 @@ export default function PedidosScreen() {
 
         {/*----------- Bovinatipo -----------*/}
         <TouchableOpacity
-            style={[styles.meatOption, carneTipoVisible && styles.checked]}
-            onPress={toggleCarneOptions}
-          >
-            <MaterialCommunityIcon name="cow" size={60} color="#fff" />
-            <Text style={styles.meatOptionText}>Boi</Text>
-          </TouchableOpacity>
+          style={[styles.meatOption, carneTipoVisible && styles.checked]}
+          onPress={toggleCarneOptions}
+        >
+          <MaterialCommunityIcon name="cow" size={60} color="#fff" />
+          <Text style={styles.meatOptionText}>Boi</Text>
+        </TouchableOpacity>
+
 
           {carneTipoVisible && (
-              <View>
-                {/* Tip de Carne */}
-                <TouchableOpacity
-                  style={styles.meatOption}
-                  onPress={() => {
-                    // Lógica para tratar a seleção de Coxão Duro aqui
-                  }}
-                >
-                  <MaterialCommunityIcon name="food-steak" size={60} color="#fff" />
-                  <Text style={styles.meatOptionText}>Coxão Duro</Text>
-                </TouchableOpacity>
-            
-                <TouchableOpacity
-                  style={styles.meatOption}
-                  onPress={() => {
-                    // Lógica para tratar a seleção de Bisteca aqui
-                  }}
-                >
-                  <MaterialCommunityIcon name="food-drumstick" size={60} color="#fff" />
-                  <Text style={styles.meatOptionText}>Bisteca</Text>
-                </TouchableOpacity>
-            
-                <TouchableOpacity
-                  style={styles.meatOption}
-                  onPress={() => {
-                    // Lógica para tratar a seleção de Contra Filé aqui
-                  }}
-                >
-                  <MaterialCommunityIcon name="food-fork-drink" size={60} color="#fff" />
-                  <Text style={styles.meatOptionText}>Contra Filé</Text>
-                </TouchableOpacity>
-                {/* Outras opções de carne podem ser adicionadas aqui */}
-              </View>
-          )}
+           <View>
+           {/* Opções de carne */}
+           <TouchableOpacity
+             style={styles.meatOption}
+             onPress={() => {
+               // Lógica para tratar a seleção de Coxão Duro aqui
+             }}
+           >
+             <MaterialCommunityIcon name="food-steak" size={60} color="#fff" />
+             <Text style={styles.meatOptionText}>Coxão Duro</Text>
+           </TouchableOpacity>
+     
+           <TouchableOpacity
+             style={styles.meatOption}
+             onPress={() => {
+               // Lógica para tratar a seleção de Bisteca aqui
+             }}
+           >
+             <MaterialCommunityIcon name="food-drumstick" size={60} color="#fff" />
+             <Text style={styles.meatOptionText}>Bisteca</Text>
+           </TouchableOpacity>
+     
+           <TouchableOpacity
+             style={styles.meatOption}
+             onPress={() => {
+               // Lógica para tratar a seleção de Contra Filé aqui
+             }}
+           >
+             <MaterialCommunityIcon name="food-fork-drink" size={60} color="#fff" />
+             <Text style={styles.meatOptionText}>Contra Filé</Text>
+           </TouchableOpacity>
+           {/* Outras opções de carne podem ser adicionadas aqui */}
+         </View>
+       )}
 
 
           {/* ----------------porcotipo ----------------*/}
@@ -348,9 +354,14 @@ export default function PedidosScreen() {
         </View>
 
 
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Finalizar</Text>
-        </TouchableOpacity>
+        <TouchableOpacity
+        style={styles.button}
+        onPress={handleFinalizarPress}
+      >
+        <Text style={styles.buttonText}>Finalizar</Text>
+      </TouchableOpacity>
+
+
 
 
         {/* **************************************************************************************** */}

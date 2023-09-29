@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import React, { useState } from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, ScrollView,} from 'react-native';
 
@@ -86,4 +84,3 @@ const styles = StyleSheet.create({
   }
 });
 
->>>>>>> f33b683b43604b40e124fcd5ef9fd72f0318f40a
