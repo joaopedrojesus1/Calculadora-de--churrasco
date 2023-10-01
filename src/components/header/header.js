@@ -1,11 +1,15 @@
 // header.js
 import React from 'react';
-import { View, Image, Text, StyleSheet } from 'react-native';
+import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
 
 
-export default function Header({ route }) {
+export default function Header({ route, BackButton, navigation }) {
   return (
     <View style={styles.header}>
+      {BackButton && (<TouchableOpacity onPress={() => navigation.goBack()}>
+        <AntDesign name="arrowleft" size={24} color="#fff" />
+      </TouchableOpacity>)}
       <Text style={styles.screenName}>{route.name}</Text>
       <Image source= {require('../../../images/logo2.png')} style={styles.logo}/>
       <Text style={styles.screenName2}>SteakTalk</Text>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, ScrollView,} from 'react-native';
 
 
-export default function ExtratoScreen() {
+export default function ExtratoScreen({navigation}) {
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>

@@ -6,6 +6,7 @@ import BottomTabNavigator from './src/components/Navigation';
 import HomeScreen from './src/pages/home';
 import PedidosScreen from './src/pages/pedidos';
 import Header from './src/components/header/header';
+import Navigation2 from './src/components/Navigation2';
 
 const Tab = createBottomTabNavigator();
 
@@ -24,22 +25,18 @@ export default function App() {
           options={{
             tabBarLabel: 'Home',
             tabBarIcon: 'home-filled',
+            tabBarItemStyle: {
+              display: 'none'
+            }
           }}
         />
         <Tab.Screen
           name="Pedidos"
-          component={PedidosScreen}
+          component={Navigation2}
           options={({ navigation }) => ({
             tabBarLabel: 'Pedidos',
-            tabBarIcon: 'fastfood',
-            tabBarButton: () => (
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => navigation.navigate('Extrato')}
-              >
-                <Text style={styles.buttonText}>Finalizar</Text>
-              </TouchableOpacity>
-            ),
+            tabBarIcon: 'fastfood', 
+            header: () => {return null}  
           })}
         />
       </Tab.Navigator>

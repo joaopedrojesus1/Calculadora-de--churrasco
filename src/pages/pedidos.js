@@ -6,10 +6,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { FontAwesome5 } from '@expo/vector-icons'; 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useNavigation } from '@react-navigation/native';
 
-export default function PedidosScreen() {
-  const navigation = useNavigation();
+
+export default function PedidosScreen({navigation}) {
   const [boiChecked, setBoiChecked] = useState(false);
   const [porcoChecked, setPorcoChecked] = useState(false);
   const [frangoChecked, setFrangoChecked] = useState(false);
@@ -356,7 +355,7 @@ export default function PedidosScreen() {
 
         <TouchableOpacity
         style={styles.button}
-        onPress={handleFinalizarPress}
+        onPress={() => handleFinalizarPress()}
       >
         <Text style={styles.buttonText}>Finalizar</Text>
       </TouchableOpacity>
