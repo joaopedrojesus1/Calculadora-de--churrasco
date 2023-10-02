@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, ScrollView,} from 'react-native';
-import ExtratoScreen from '../components/extrato';
+import { CheckBox } from '@rneui/themed';
 import NumericInput from 'react-native-numeric-input';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { FontAwesome5 } from '@expo/vector-icons'; 
@@ -62,7 +62,7 @@ export default function PedidosScreen({navigation}) {
   };
   
   const handleFinalizarPress = () => {
-    // Você pode adicionar qualquer lógica adicional aqui, se necessário
+    
     navigation.navigate('Extrato');
   };
   
@@ -108,7 +108,7 @@ export default function PedidosScreen({navigation}) {
           </View>
           
 
-          {/* NumericInput for Mulheres */}
+          
           <View style={styles.squarecomNumeric}>
             <View style={[styles.square]}>
               <Icon name="female" size={60} color="#fff" />
@@ -131,7 +131,7 @@ export default function PedidosScreen({navigation}) {
             />
           </View>
 
-          {/* NumericInput for Crianças */}
+         
           <View style={styles.squarecomNumeric}>
             <View style={[styles.square]}>
               <Icon name="child" size={60} color="#fff" />
@@ -160,7 +160,7 @@ export default function PedidosScreen({navigation}) {
         <View style={styles.meatOptions}>
 
 
-        {/*----------- Bovinatipo -----------*/}
+        {/*---------- Bovinatipo ----------*/}
         <TouchableOpacity
           style={[styles.meatOption, carneTipoVisible && styles.checked]}
           onPress={toggleCarneOptions}
@@ -171,17 +171,13 @@ export default function PedidosScreen({navigation}) {
 
 
           {carneTipoVisible && (
-           <View>
+           <View style = {styles.BovinaCutoption}>
            {/* Opções de carne */}
-           <TouchableOpacity
-             style={styles.meatOption}
-             onPress={() => {
-               // Lógica para tratar a seleção de Coxão Duro aqui
-             }}
-           >
-             <MaterialCommunityIcon name="food-steak" size={60} color="#fff" />
-             <Text style={styles.meatOptionText}>Coxão Duro</Text>
-           </TouchableOpacity>
+           <CheckBox
+              style={styles.Checkbox}
+              value={boiChecked}
+              onValueChange={() => setBoiChecked(!boiChecked)}
+            />
      
            <TouchableOpacity
              style={styles.meatOption}
@@ -439,6 +435,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 10,
     marginRight: 4,
+  },
+  Checkbox:{
+    elevation:2,
   },
   meatOptionText: {
     color: '#fff',

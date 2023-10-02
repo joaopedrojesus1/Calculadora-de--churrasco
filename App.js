@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import BottomTabNavigator from './src/components/Navigation';
 import HomeScreen from './src/pages/home';
+import Receitas from './src/pages/Receitas';
 import PedidosScreen from './src/pages/pedidos';
 import Header from './src/components/header/header';
 import Navigation2 from './src/components/Navigation2';
@@ -25,6 +26,17 @@ export default function App() {
           options={{
             tabBarLabel: 'Home',
             tabBarIcon: 'home-filled',
+            tabBarItemStyle: {
+              display: 'none'
+            }
+          }}
+        />
+        <Tab.Screen
+          name="receitas"
+          component={Receitas}
+          options={{
+            tabBarLabel: 'receitas',
+            tabBarIcon: 'receitas-filled',
             tabBarItemStyle: {
               display: 'none'
             }
