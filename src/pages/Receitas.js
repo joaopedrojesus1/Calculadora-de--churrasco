@@ -17,90 +17,134 @@ const Receitas = () => {
   const recipes = [
     {
       id: 1,
-      title: 'Bolo de Chocolate',
-      image: 'https://cdn.sodiedoces.com.br/wp-content/uploads/2021/11/25112521/Chocolate-e1637586413171.png',
-      preparationTime: '40 minutos',
-      difficulty: 'Médio',
-      portion: '10',
+      title: 'Bisteca de boi no forno',
+      image: 'https://receitinhas.com.br/wp-content/uploads/2022/10/Bisteca-de-boi-no-forno-Tudo-Receitas-1200x774.jpg',
+      preparationTime: '45 minutos',
+      difficulty: 'Fácil',
+      portion: '2',
       ingredients: [
         {
-          section: 'Massa',
+          section: '',
           items: [
-            '4 ovos',
-            '2 colheres (sopa) de manteiga',
-            '2 xícaras (chá) de açúcar',
-            '1 xícara (chá) de leite',
-            '4 colheres (sopa) de chocolate em pó',
-            '3 xícaras (chá) de farinha de trigo',
-            '2 colheres (sopa) de fermento',
+            '',
+            '2 bistecas bovinas',
+            '1 cebola cortada em rodelas',
+            '2 dentes de alho cortados em pedaços bem pequenos',
+            'Pimenta-do-reino a gosto',
+            '1 colher de sopa de sal grosso',
+            '3 colheres de azeite',
+            '',
           ],
         },
-        {
-          section: 'Calda',
-          items: [
-            '2 colheres (sopa) de manteiga',
-            '2 latas de creme de leite com soro',
-            '7 colheres (sopa) de chocolate em pó',
-            '3 colheres (sopa) de açúcar',
-          ],
-        },
-      ],
-      instructions: [
-        { 
-          section: 'Massa',
-          items: [
-            '1. Em um liquidificador adicione os ovos, o chocolate em pó, a manteiga, a farinha de trigo, o açúcar e o leite, depois bata por 5 minutos.',
-            '',
-            '2. Adicione o fermento e misture com uma espátula delicadamente.',
-            '',
-            '3. Em uma forma untada, despeje a massa e asse em forno médio (180 ºC) preaquecido por cerca de 40 minutos. Não se esqueça de usar uma forma alta para essa receita: como leva duas colheres de fermento, ela cresce bastante! Outra solução pode ser colocar apenas uma colher de fermento e manter a sua receita em uma forma pequena.',
-            '',
-            '4. Acrescente o creme de leite e misture bem até obter uma consistência cremosa.',
-          ],
-        },
-        { 
-          section: 'Calda',
-          items: [
-            '1. Em uma panela, aqueça a manteiga e misture o chocolate em pó até que esteja homogêneo.',
-            '',
-            '2. Desligue o fogo e acrescente o açúcar.',
-          ],
-        }
-      ],
-      category: 'Sobremesa',
-    },
-
-    {
-      id: 2,
-      title: 'Brigadeiro',
-      image: 'https://catia-brigadeiro.com/img/brigadeiro_alpha.png',
-      preparationTime: '25 minutos',
-      difficulty: 'Muito fácil',
-      portion: '30',
-      ingredients: [
-        {
-          section: 'Brigadeiro',
-          items: [
-            '1 caixa de leite condensado',
-            '7 colheres (sopa) de achocolatado ou 4 colheres (sopa) de chocolate em pó',
-            '1 colher (sopa) de margarina sem sal',
-            'chocolate granulado',
-          ],
-        },
+        
       ],
       instructions: [
         { 
           section: '',
           items: [
-            '1. Em uma panela funda, acrescente o leite condensado, a margarina e o chocolate em pó.',
             '',
-            '2. Cozinhe em fogo médio e mexa até que o brigadeiro comece a desgrudar da panela.',
             '',
-            '3. Deixe esfriar e faça pequenas bolas com a mão passando a massa no chocolate granulado.',
+            '1. Em um recipiente coloque todos os ingredientes, menos as bistecas.',
+            '',
+            '2. Misture bem e reserve.',
+            '',
+            '3. Pré-aqueça o forno a 200 graus.',
+            '',
+            '4. Coloque as bistecas em uma assadeira.',
+            '',
+            '5. Espalhe o tempero sobre elas, de ambos os lados.',
+            '',
+            '6. Leve ao forno por cerca de 35 minutos (se necessário vire a carne na metade do tempo).',
+            '',
+            '7. Retire e sirva em seguida.',
+            '',
+            '',
           ],
-        }
+        },
+        
       ],
-      category: 'Sobremesa',
+      category: 'Bovino',
+    },
+
+    {
+      id: 2,
+      title: 'Contra filé e batatas ao murro assado',
+      image: 'https://www.sabornamesa.com.br/media/k2/items/cache/6111134b69b9dcb9c953bb227317f7fc_XL.jpg',
+      preparationTime: '40 minutos',
+      difficulty: 'Fácil',
+      portion: '4',
+      ingredients: [
+        {
+          section: 'Bife',
+          items: [
+            '',
+            'Sal a gosto',
+            'Azeite a gosto',
+            '2 Dentes de Alho',
+            '3 Bifes Altos de Contra Filé',
+            '2 Colheres (de sopa) de Manteiga',
+            '1 Ramo de Alecrim',
+            '',
+          ],
+        },
+        {
+          section: 'Batata',
+          items: [
+            '',
+            '700g batata bolinha',
+            'Salsinha',
+            'Azeite',
+            '2 dentes de alho',
+            'Manjericão',
+            'Alecrim',
+            'Tomilho',
+            '',
+          ],
+        },
+      ],
+      instructions: [
+        { 
+          section: 'Batata',
+          items: [
+            '',
+            '1. Em uma panela com água e sal cozinhe as suas batatas até elas ficarem molinhas, retire.',
+            '',
+            '2. Em uma frigideira, coloque um fio de azeite, espalhe bem e então comece a esmagar as suas batatas, com casca e tudo.',
+            '',
+            '3. Repita o processo com todas as batatas, disponha na frigideira e só então leve ao fogo baixo, tempere com sal e pimenta.',
+            '',
+            '4. Corte o tomilho, alecrim, alho e salsinha e reserve.',
+            '',
+            '5. Quando as suas batatas estiverem bem douradas, vire e deixe assar por 10 minutos.',
+            '',
+            '6. Quando ambos os lados estiverem com crosta, afaste tudo e adicione a manteiga o alho, alecrim e tomilho, refogue até dourar.',
+            '',
+            '7. Retire do fogão e misture todos os componentes. Finalize com manjericão e salsinha.',
+            '',
+          ],
+        },
+        { 
+          section: 'Contra Filé',
+          items: [
+            '',
+            '1. Em uma frigideira bem quente adicione azeite e logo em seguida, acrescente os filés e deixe fritar até criar uma crosta dourada, vire em seguida.',
+            '',
+            '2. Repita o processo no outro lado do bife.',
+            '',
+            '3. Agora, adicione manteiga, dentes de alho amassado e alecrim fresco, mexa até a manteiga derreta.',
+            '',
+            '4. Logo depois regue o bife com manteiga até que fritem totalmente.',
+            '',
+            '5. Para finalizar, sele a gordura e então retire do fogo. Deixe descansar por 3 minutinhos.',
+            '',
+            '6. Sirva logo depois junto as batatas.',
+            '',
+            '',
+            
+          ],
+        },
+      ],
+      category: 'Bovino',
     },
     
     {
@@ -189,7 +233,7 @@ const Receitas = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
+      
 
       <ScrollView contentContainerStyle={styles.contentContainer}>
         {selectedRecipe ? (

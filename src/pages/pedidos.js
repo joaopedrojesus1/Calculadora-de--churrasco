@@ -30,12 +30,7 @@ export default function PedidosScreen({navigation}) {
   const [criancas, setCriancas] = useState(0);
   const [totalParticipants, setTotalParticipants] = useState(0);
   const [carneTipoVisible, setCarneTipoVisible] = useState(false);
-  
 
-
-
-
-  
 
   const handleHomensChange = (value) => {
     if (value + mulheres + criancas <= 50) {
@@ -57,14 +52,40 @@ export default function PedidosScreen({navigation}) {
       setTotalParticipants(homens + mulheres + value);
     }
   };
+
   const toggleCarneOptions = () => {
     setCarneTipoVisible(!carneTipoVisible);
   };
   
+  
+  
   const handleFinalizarPress = () => {
-    
-    navigation.navigate('Extrato');
+    navigation.navigate('Extrato', { selectedOptions });
   };
+
+  const selectedOptions = {
+    boiChecked,
+    porcoChecked,
+    frangoChecked,
+    aguaChecked,
+    refrigeranteChecked,
+    alcoolicaChecked,
+    sucoChecked,
+    arrozChecked,
+    farofaChecked,
+    paodealhoChecked,
+    copoChecked,
+    guardanapoChecked,
+    carvaoChecked,
+    pratosChecked,
+    talheresChecked,
+    acendedoresChecked,
+    homens,
+    mulheres,
+    criancas,
+    totalParticipants,
+  };
+  
   
   
 
@@ -163,44 +184,28 @@ export default function PedidosScreen({navigation}) {
         {/*---------- Bovinatipo ----------*/}
         <TouchableOpacity
           style={[styles.meatOption, carneTipoVisible && styles.checked]}
-          onPress={toggleCarneOptions}
+          onPress={() => {
+            toggleCarneOptions(); // Atualize a visibilidade das opções de carne
+          }}
         >
           <MaterialCommunityIcon name="cow" size={60} color="#fff" />
           <Text style={styles.meatOptionText}>Boi</Text>
         </TouchableOpacity>
+     
 
 
-          {carneTipoVisible && (
-           <View style = {styles.BovinaCutoption}>
-           {/* Opções de carne */}
-           <CheckBox
+        {carneTipoVisible && (
+          <View style={styles.BovinaCutoption}>
+            {/* Opções de carne */}
+            <CheckBox
               style={styles.Checkbox}
               value={boiChecked}
               onValueChange={() => setBoiChecked(!boiChecked)}
             />
-     
-           <TouchableOpacity
-             style={styles.meatOption}
-             onPress={() => {
-               // Lógica para tratar a seleção de Bisteca aqui
-             }}
-           >
-             <MaterialCommunityIcon name="food-drumstick" size={60} color="#fff" />
-             <Text style={styles.meatOptionText}>Bisteca</Text>
-           </TouchableOpacity>
-     
-           <TouchableOpacity
-             style={styles.meatOption}
-             onPress={() => {
-               // Lógica para tratar a seleção de Contra Filé aqui
-             }}
-           >
-             <MaterialCommunityIcon name="food-fork-drink" size={60} color="#fff" />
-             <Text style={styles.meatOptionText}>Contra Filé</Text>
-           </TouchableOpacity>
-           {/* Outras opções de carne podem ser adicionadas aqui */}
-         </View>
-       )}
+            
+            {/* Outras opções de carne podem ser adicionadas aqui */}
+          </View>
+        )}
 
 
           {/* ----------------porcotipo ----------------*/}

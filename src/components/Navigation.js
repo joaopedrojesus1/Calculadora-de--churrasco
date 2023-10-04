@@ -72,6 +72,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     backgroundColor: '#fff',
     height: 3,
-    width: Dimensions.get('window').width / 2, // Largura igual à largura da tela dividida pelo número de abas
+    width: Dimensions.get('window').width / 3, // Largura igual à largura da tela dividida pelo número de abas
   },
 });

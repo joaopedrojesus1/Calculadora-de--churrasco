@@ -1,4 +1,4 @@
-import { createStackNavigator } from "@react-navigation/stack"
+import { createStackNavigator } from "@react-navigation/stack";
 import PedidosScreen from "../pages/pedidos";
 import ExtratoScreen from "../pages/extrato";
 import Header from "./header/header";

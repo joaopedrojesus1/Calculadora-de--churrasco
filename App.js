@@ -32,11 +32,11 @@ export default function App() {
           }}
         />
         <Tab.Screen
-          name="receitas"
+          name="Receitas"
           component={Receitas}
           options={{
             tabBarLabel: 'receitas',
-            tabBarIcon: 'receitas-filled',
+            tabBarIcon: '',
             tabBarItemStyle: {
               display: 'none'
             }
