@@ -5,7 +5,7 @@ export default function ExtratoScreen({ route }) {
   // Access the selected options from the navigation parameters
   const { selectedOptions } = route.params;
 
-  // Calculate the cost for each category
+  // Calcular Carnes
   const calcularCustoCarnes = () => {
     const { boiChecked, porcoChecked, frangoChecked } = selectedOptions;
     let cost = 0;
@@ -15,20 +15,25 @@ export default function ExtratoScreen({ route }) {
     return cost;
   };
 
+  // Calcular Bebidas não Alcoolicas
   const calcularCustoBebidas = () => {
-    const { aguaChecked, refrigeranteChecked, alcoolicaChecked, sucoChecked, criancas } = selectedOptions;
+    const { aguaChecked, refrigeranteChecked, sucoChecked} = selectedOptions;
     let cost = 0;
     if (aguaChecked) cost += 2; // Replace with the actual cost of agua
     if (refrigeranteChecked) cost += 3; // Replace with the actual cost of refrigerante
-    if (alcoolicaChecked) cost += 5; // Replace with the actual cost of alcoolica
     if (sucoChecked) cost += 4; // Replace with the actual cost of suco
-    if (alcoolicaChecked && criancas > 0) {
-      // Subtract the cost of alcoolica for children
-      cost -= 5 * criancas;
-    }
     return cost;
   };
 
+  // Calcular Bebidas Alcoolicas
+  const calcularCustoBebidasAlcoolica = () => {
+    const { alcoolicaChecked } = selectedOptions;
+    let cost = 0;
+    if (alcoolicaChecked) cost += 5; // Replace with the actual cost of alcoolica
+    return cost;
+  };
+
+  // Calcular Acompanhamentos
   const calcularCustoAcompanhamentos = () => {
     const { arrozChecked, farofaChecked, paodealhoChecked } = selectedOptions;
     let cost = 0;
@@ -38,6 +43,7 @@ export default function ExtratoScreen({ route }) {
     return cost;
   };
 
+  // Calcular Material de Consumo
   const calcularCustoMaterialConsumo = () => {
     const { copoChecked, guardanapoChecked, carvaoChecked, pratosChecked, talheresChecked, acendedoresChecked } = selectedOptions;
     let cost = 0;
@@ -50,13 +56,15 @@ export default function ExtratoScreen({ route }) {
     return cost;
   };
 
-  // Calculate the total cost
+  // Calcular CUSTO TOTAL
   const { homens, mulheres, criancas } = selectedOptions;
   const totalCarnes = calcularCustoCarnes() * (homens + mulheres + criancas);
-  const totalBebidas = calcularCustoBebidas() * (homens + mulheres);
+  const totalBebidasNAlcoolicas = calcularCustoBebidas() * (homens + mulheres + criancas);
+  const totalBebidasAlcoolicas = calcularCustoBebidasAlcoolica() * (homens + mulheres);
   const totalAcompanhamentos = calcularCustoAcompanhamentos() * (homens + mulheres + criancas);
   const totalMaterialConsumo = calcularCustoMaterialConsumo() * (homens + mulheres + criancas);
   const valorTotal = totalCarnes + totalBebidas + totalAcompanhamentos + totalMaterialConsumo;
+  const totalBebidas = totalBebidasNAlcoolicas + totalBebidasAlcoolicas;
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>

@@ -9,6 +9,9 @@ import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIc
 
 
 export default function PedidosScreen({navigation}) {
+  const [coxaoDuroChecked, setCoxaoDuroChecked] = useState(false);
+  const [bistecaChecked, setBistecaChecked] = useState(false);
+  const [contraFileChecked, setContraFileChecked] = useState(false);
   const [boiChecked, setBoiChecked] = useState(false);
   const [porcoChecked, setPorcoChecked] = useState(false);
   const [frangoChecked, setFrangoChecked] = useState(false);
@@ -87,7 +90,18 @@ export default function PedidosScreen({navigation}) {
   };
   
   
-  
+  function renderMeatCheckbox(label, checked, onValueChange) {
+    return (
+      <View style={styles.checkboxRow} key={label}>
+        <Text style={styles.checkboxLabel}>{label}</Text>
+        <CheckBox
+          style={styles.Checkbox}
+          value={checked}
+          onValueChange={() => onValueChange(!checked)}
+        />
+      </View>
+    );
+  }
 
   
 
@@ -189,23 +203,8 @@ export default function PedidosScreen({navigation}) {
           }}
         >
           <MaterialCommunityIcon name="cow" size={60} color="#fff" />
-          <Text style={styles.meatOptionText}>Boi</Text>
+          <Text style={styles.meatOptionText}>Bovina</Text>
         </TouchableOpacity>
-     
-
-
-        {carneTipoVisible && (
-          <View style={styles.BovinaCutoption}>
-            {/* Opções de carne */}
-            <CheckBox
-              style={styles.Checkbox}
-              value={boiChecked}
-              onValueChange={() => setBoiChecked(!boiChecked)}
-            />
-            
-            {/* Outras opções de carne podem ser adicionadas aqui */}
-          </View>
-        )}
 
 
           {/* ----------------porcotipo ----------------*/}
@@ -216,7 +215,7 @@ export default function PedidosScreen({navigation}) {
             }}
           >
             <MaterialCommunityIcon name="pig" size={60} color="#fff" />
-            <Text style={styles.meatOptionText}>Porco</Text>
+            <Text style={styles.meatOptionText}>Suína</Text>
           </TouchableOpacity>
   
 
@@ -231,6 +230,16 @@ export default function PedidosScreen({navigation}) {
             <Text style={styles.meatOptionText}>Frango</Text>
           </TouchableOpacity>
         </View>
+        {carneTipoVisible && (
+          <View style={styles.BovinaCutoption}>
+            {/* Opções de carne */}
+            {renderMeatCheckbox("Coxão Duro", coxaoDuroChecked, setCoxaoDuroChecked)}
+            {renderMeatCheckbox("Bisteca", bistecaChecked, setBistecaChecked)}
+            {renderMeatCheckbox("Contra Filé", contraFileChecked, setContraFileChecked)}
+            
+            {/* Outras opções de carne podem ser adicionadas aqui */}
+          </View>
+        )}
         {/* ***************************************************************************************** */}
         <Text style={styles.titlebaixo}>Opções de Bebidas</Text>
         <Text style={styles.grayText}>Quantas opções desejar</Text>
@@ -440,6 +449,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 10,
     marginRight: 4,
+  },
+  BovinaCutoption:{
+    alignSelf:'flex-start',
   },
   Checkbox:{
     elevation:2,

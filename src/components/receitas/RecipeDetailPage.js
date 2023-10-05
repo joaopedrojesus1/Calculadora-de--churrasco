@@ -9,7 +9,7 @@ const RecipeDetailPage = ({ recipe, onClose }) => {
         <ScrollView contentContainerStyle={styles.contentContainer}>
         <View style={styles.content}>
           <Text style={styles.title}>{recipe.title}</Text>
-          <Image source={{ uri: recipe.image }} style={{ width: 300, height: 200,margin: 25, }} />
+          <Image source={{ uri: recipe.image }} style={{ width: 300, height: 200,margin: 25, borderRadius: 10 }} />
           <View style={styles.div}>
             <Text style={styles.color}>Tempo de Preparo: {recipe.preparationTime}</Text>
             <Text style={styles.color}>Nível de Dificuldade: {recipe.difficulty}</Text>
@@ -23,7 +23,7 @@ const RecipeDetailPage = ({ recipe, onClose }) => {
           {recipe.ingredients.map((section, index) => (
             <View key={index}>
               <Text style={{ fontWeight: '500', marginTop: 10, color: '#fff' }}>{section.section}</Text>
-              <Text>{section.items.join('\n')}</Text>
+              <Text style={{ fontWeight: '200', marginTop: 10, color: '#fff' }}>{section.items.join('\n')}</Text>
             </View>
           ))}
           </View>
@@ -33,7 +33,7 @@ const RecipeDetailPage = ({ recipe, onClose }) => {
           {recipe.instructions.map((section, index) => (
             <View key={index}>
               <Text style={{ fontWeight: '500', marginTop: 10, color: '#fff' }}>{section.section}</Text>
-              <Text>{section.items.join('\n')}</Text>
+              <Text style={{ fontWeight: '200', marginTop: 10, color: '#fff' }}>{section.items.join('\n')}</Text>
             </View>
           ))}
           </View>
