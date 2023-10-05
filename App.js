@@ -36,7 +36,7 @@ export default function App() {
           component={Receitas}
           options={{
             tabBarLabel: 'receitas',
-            tabBarIcon: '',
+            tabBarIcon: '',                          //lunch-dining
             tabBarItemStyle: {
               display: 'none'
             }

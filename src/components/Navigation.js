@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Dimensions, Animated } from '
 import { MaterialIcons } from '@expo/vector-icons';
 
 
+
 export default function CustomTabBar({ state, descriptors, navigation }) {
   const [indicatorPosition] = useState(new Animated.Value(0));
 
