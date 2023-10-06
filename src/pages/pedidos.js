@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, ScrollView,} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
 import { CheckBox } from '@rneui/themed';
+import { Picker } from '@react-native-picker/picker';
 import NumericInput from 'react-native-numeric-input';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { FontAwesome5 } from '@expo/vector-icons'; 
@@ -12,6 +13,10 @@ export default function PedidosScreen({navigation}) {
   const [coxaoDuroChecked, setCoxaoDuroChecked] = useState(false);
   const [bistecaChecked, setBistecaChecked] = useState(false);
   const [contraFileChecked, setContraFileChecked] = useState(false);
+  const [selectedMeat, setSelectedMeat] = useState("Coxão Duro");
+  const [selectedBoiMeat, setSelectedBoiMeat] = useState("opção Carne");
+  const [selectedPorcoMeat, setSelectedPorcoMeat] = useState("Opção Porco");
+  const [selectedFrangoMeat, setSelectedFrangoMeat] = useState("Opção Frango");
   const [boiChecked, setBoiChecked] = useState(false);
   const [porcoChecked, setPorcoChecked] = useState(false);
   const [frangoChecked, setFrangoChecked] = useState(false);
@@ -195,51 +200,88 @@ export default function PedidosScreen({navigation}) {
         <View style={styles.meatOptions}>
 
 
-        {/*---------- Bovinatipo ----------*/}
+        <View style={styles.meatOptions}>
         <TouchableOpacity
-          style={[styles.meatOption, carneTipoVisible && styles.checked]}
+          style={[styles.meatOption, coxaoDuroChecked && styles.checked]}
           onPress={() => {
-            toggleCarneOptions(); // Atualize a visibilidade das opções de carne
+            setContraFileChecked(false);
+            setBistecaChecked(false);
+            setPorcoChecked(false);
+            setFrangoChecked(false);
+            toggleCarneOptions(); // Atualizar a visibilidade das opções de carne
           }}
         >
           <MaterialCommunityIcon name="cow" size={60} color="#fff" />
           <Text style={styles.meatOptionText}>Bovina</Text>
         </TouchableOpacity>
 
-
-          {/* ----------------porcotipo ----------------*/}
-          <TouchableOpacity
-            style={[styles.meatOption, porcoChecked && styles.checked]}
-            onPress={() => {
-              setPorcoChecked(!porcoChecked);           
-            }}
-          >
-            <MaterialCommunityIcon name="pig" size={60} color="#fff" />
-            <Text style={styles.meatOptionText}>Suína</Text>
-          </TouchableOpacity>
-  
-
-          {/* ----------------Frangotipo ----------------*/}
-          <TouchableOpacity
-            style={[styles.meatOption, frangoChecked && styles.checked]}
-            onPress={() => {
-              setFrangoChecked(!frangoChecked);           
-            }}
-          >
-            <MaterialCommunityIcon name="food-drumstick" size={60} color="#fff" />
-            <Text style={styles.meatOptionText}>Frango</Text>
-          </TouchableOpacity>
-        </View>
         {carneTipoVisible && (
-          <View style={styles.BovinaCutoption}>
-            {/* Opções de carne */}
-            {renderMeatCheckbox("Coxão Duro", coxaoDuroChecked, setCoxaoDuroChecked)}
-            {renderMeatCheckbox("Bisteca", bistecaChecked, setBistecaChecked)}
-            {renderMeatCheckbox("Contra Filé", contraFileChecked, setContraFileChecked)}
-            
-            {/* Outras opções de carne podem ser adicionadas aqui */}
-          </View>
+          <Picker
+            selectedValue={selectedMeat}
+            style={styles.picker}
+            onValueChange={(itemValue) => setSelectedMeat(itemValue)}
+          >
+            <Picker.Item label="Coxão Duro" value="Coxão Duro" />
+            <Picker.Item label="Bisteca" value="Bisteca" />
+            <Picker.Item label="Contra Filé" value="Contra Filé" />
+          </Picker>
         )}
+
+        <TouchableOpacity
+          style={[styles.meatOption, porcoChecked && styles.checked]}
+          onPress={() => {
+            setCoxaoDuroChecked(false);
+            setBistecaChecked(false);
+            setContraFileChecked(false);
+            setFrangoChecked(false);
+            toggleCarneOptions();
+          }}
+        >
+          <MaterialCommunityIcon name="pig" size={60} color="#fff" />
+          <Text style={styles.meatOptionText}>Suína</Text>
+        </TouchableOpacity>
+
+        {carneTipoVisible && (
+          <Picker
+            selectedValue={selectedMeat}
+            style={styles.picker}
+            onValueChange={(itemValue) => setSelectedMeat(itemValue)}
+          >
+            <Picker.Item label="Coxão Duro" value="Coxão Duro" />
+            <Picker.Item label="Bisteca" value="Bisteca" />
+            <Picker.Item label="Contra Filé" value="Contra Filé" />
+          </Picker>
+        )}
+
+        <TouchableOpacity
+          style={[styles.meatOption, frangoChecked && styles.checked]}
+          onPress={() => {
+            setCoxaoDuroChecked(false);
+            setBistecaChecked(false);
+            setPorcoChecked(false);
+            setContraFileChecked(false);
+            toggleCarneOptions();
+          }}
+        >
+          <MaterialCommunityIcon name="food-drumstick" size={60} color="#fff" />
+          <Text style={styles.meatOptionText}>Frango</Text>
+        </TouchableOpacity>
+
+        {carneTipoVisible && (
+          <Picker
+            selectedValue={selectedMeat}
+            style={styles.picker}
+            onValueChange={(itemValue) => setSelectedMeat(itemValue)}
+          >
+            <Picker.Item label="Coxão Duro" value="Coxão Duro" />
+            <Picker.Item label="Bisteca" value="Bisteca" />
+            <Picker.Item label="Contra Filé" value="Contra Filé" />
+          </Picker>
+        )}
+      </View>
+
+
+        </View>
         {/* ***************************************************************************************** */}
         <Text style={styles.titlebaixo}>Opções de Bebidas</Text>
         <Text style={styles.grayText}>Quantas opções desejar</Text>
@@ -555,5 +597,14 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
+  picker: {
+    width: 200,
+    height: 40,
+    backgroundColor: '#A52A2A',
+    color: '#fff',
+    borderRadius: 10,
+    marginTop: 10,
+  }
+  
 });
 
