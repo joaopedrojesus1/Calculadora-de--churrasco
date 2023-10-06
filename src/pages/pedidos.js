@@ -215,18 +215,6 @@ export default function PedidosScreen({navigation}) {
           <Text style={styles.meatOptionText}>Bovina</Text>
         </TouchableOpacity>
 
-        {carneTipoVisible && (
-          <Picker
-            selectedValue={selectedMeat}
-            style={styles.picker}
-            onValueChange={(itemValue) => setSelectedMeat(itemValue)}
-          >
-            <Picker.Item label="Coxão Duro" value="Coxão Duro" />
-            <Picker.Item label="Bisteca" value="Bisteca" />
-            <Picker.Item label="Contra Filé" value="Contra Filé" />
-          </Picker>
-        )}
-
         <TouchableOpacity
           style={[styles.meatOption, porcoChecked && styles.checked]}
           onPress={() => {
@@ -241,18 +229,6 @@ export default function PedidosScreen({navigation}) {
           <Text style={styles.meatOptionText}>Suína</Text>
         </TouchableOpacity>
 
-        {carneTipoVisible && (
-          <Picker
-            selectedValue={selectedMeat}
-            style={styles.picker}
-            onValueChange={(itemValue) => setSelectedMeat(itemValue)}
-          >
-            <Picker.Item label="Coxão Duro" value="Coxão Duro" />
-            <Picker.Item label="Bisteca" value="Bisteca" />
-            <Picker.Item label="Contra Filé" value="Contra Filé" />
-          </Picker>
-        )}
-
         <TouchableOpacity
           style={[styles.meatOption, frangoChecked && styles.checked]}
           onPress={() => {
@@ -266,7 +242,8 @@ export default function PedidosScreen({navigation}) {
           <MaterialCommunityIcon name="food-drumstick" size={60} color="#fff" />
           <Text style={styles.meatOptionText}>Frango</Text>
         </TouchableOpacity>
-
+      </View>
+      <View style={styles.pickerContainer}>
         {carneTipoVisible && (
           <Picker
             selectedValue={selectedMeat}
@@ -279,9 +256,7 @@ export default function PedidosScreen({navigation}) {
           </Picker>
         )}
       </View>
-
-
-        </View>
+      </View>
         {/* ***************************************************************************************** */}
         <Text style={styles.titlebaixo}>Opções de Bebidas</Text>
         <Text style={styles.grayText}>Quantas opções desejar</Text>
@@ -604,6 +579,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     borderRadius: 10,
     marginTop: 10,
+    alignSelf:'flex-start',
   }
   
 });

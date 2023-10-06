@@ -57,7 +57,7 @@ export default function ExtratoScreen({ route }) {
   };
 
   // Calcular CUSTO TOTAL
-  const { homens, mulheres, criancas } = selectedOptions;
+  const { homens, mulheres, criancas,  copoChecked, guardanapoChecked, carvaoChecked, pratosChecked, talheresChecked, acendedoresChecked,  arrozChecked, farofaChecked, paodealhoChecked, alcoolicaChecked, aguaChecked, refrigeranteChecked, sucoChecked } = selectedOptions;
   const totalCarnes = calcularCustoCarnes() * (homens + mulheres + criancas);
   const totalBebidasNAlcoolicas = calcularCustoBebidas() * (homens + mulheres + criancas);
   const totalBebidasAlcoolicas = calcularCustoBebidasAlcoolica() * (homens + mulheres);
@@ -65,6 +65,100 @@ export default function ExtratoScreen({ route }) {
   const totalMaterialConsumo = calcularCustoMaterialConsumo() * (homens + mulheres + criancas);
   const valorTotal = totalCarnes + totalBebidas + totalAcompanhamentos + totalMaterialConsumo;
   const totalBebidas = totalBebidasNAlcoolicas + totalBebidasAlcoolicas;
+
+  // Calcular PESAGEM COPOS
+  let copoText = null;
+  if (copoChecked) {
+    pesagemCopoPorPessoa = 2;
+    pesoTotalCopo = pesagemCopoPorPessoa * (homens + mulheres + criancas)
+    copoText = (
+      <Text style={styles.description}>Copos - {pesoTotalCopo} Unidades</Text>
+    );
+  }
+
+  // Calcular PESAGEM GUARDANAPOS
+  let guardanapoText = null;
+  if (guardanapoChecked) {
+    pesagemGuardanapoPorPessoa = 2;
+    pesoTotalGuardanapo = pesagemGuardanapoPorPessoa * (homens + mulheres + criancas)
+    guardanapoText = (
+      <Text style={styles.description}>Guardanapos - {pesoTotalGuardanapo} Unidades</Text>
+    );
+  }
+
+  // Calcular PESAGEM CARVÃO
+  let carvaoText = null;
+  if (carvaoChecked) {
+    pesagemCarvaoPorPessoa = 0.3;
+    pesoTotalCarvao = pesagemCarvaoPorPessoa * (homens + mulheres + criancas)
+    carvaoText = (
+      <Text style={styles.description}>Carvão - {pesoTotalCarvao.toFixed(1)} kg</Text>
+    );
+  }
+
+  // Calcular PESAGEM PRATOS
+  let pratoText = null;
+  if (pratosChecked) {
+    pesagemPratoPorPessoa = 1;
+    pesoTotalPrato = pesagemPratoPorPessoa * (homens + mulheres + criancas)
+    pratoText = (
+      <Text style={styles.description}>Pratos - {pesoTotalPrato} Unidades</Text>
+    );
+  }
+
+  // Calcular PESAGEM TALHERES
+  let talherText = null;
+  if (talheresChecked) {
+     pesagemTalherPorPessoa = 1;
+    pesoTotalTalher = pesagemTalherPorPessoa * (homens + mulheres + criancas)
+    talherText = (
+      <Text style={styles.description}>Talheres - {pesoTotalTalher} Unidades</Text>
+    );
+   }
+
+  // Calcular PESAGEM TALHERES
+  let acendedorText = null;
+  if (acendedoresChecked) {
+    pesagemAcendedorPorPessoa = 1;
+    pesoTotalAcendedor = pesagemAcendedorPorPessoa
+    acendedorText = (
+      <Text style={styles.description}>Acendedores - {pesoTotalAcendedor} Caixa</Text>
+    );
+  }
+
+  // Calcular PESAGEM ARROZ
+  let arrozText = null;
+  if (arrozChecked) {
+    pesagemArrozPorPessoa = 0.2;
+    pesoTotalArroz = pesagemArrozPorPessoa * (homens + mulheres + criancas)
+    arrozText = (
+      <Text style={styles.description}>Arroz - {pesoTotalArroz.toFixed(1)} kg</Text>
+    );
+  }
+
+    // Calcular PESAGEM FAROFA
+    let farofaText = null;
+    if (farofaChecked) {
+      pesagemFarofaPorPessoa = 0.05;
+      pesoTotalFarofa = pesagemFarofaPorPessoa * (homens + mulheres + criancas)
+      farofaText = (
+        <Text style={styles.description}>Farofa - {pesoTotalFarofa.toFixed(2)} kg</Text>
+      );
+    }
+    
+    // Calcular PESAGEM PÃO DE ALHO
+    let paodealhoText = null;
+    if (paodealhoChecked) {
+      pesagemPaoDeAlhoPorPessoa = 2;
+      pesoTotalPaoDeAlho = pesagemPaoDeAlhoPorPessoa * (homens + mulheres + criancas)
+      paodealhoText = (
+        <Text style={styles.description}>Pão de Alho - {pesoTotalPaoDeAlho} Unidades</Text>
+      );
+    }
+    
+   
+
+
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -86,12 +180,19 @@ export default function ExtratoScreen({ route }) {
           
           <View style={styles.div}>
             <Text style={styles.subtitletext}>Acompanhamentos</Text>
-            <Text style={styles.description}>Example - 1,0 kg</Text>
+            {arrozText}
+            {farofaText}
+            {paodealhoText}
           </View>
 
           <View style={styles.div}>
             <Text style={styles.subtitletext}>Material de Consumo</Text>
-            <Text style={styles.description}>Example - 1,0 kg</Text>
+            {copoText}
+            {guardanapoText}
+            {carvaoText}
+            {pratoText}
+            {talherText}
+            {acendedorText}
           </View>
 
           <View style={styles.div}>
@@ -137,7 +238,7 @@ const styles = StyleSheet.create({
   div: {
     flex: 1,
     width: 300,
-    height: 200,
+    height: 250,
     borderRadius: 15,
     borderColor: '#D2D1D1',
     borderWidth: 2,

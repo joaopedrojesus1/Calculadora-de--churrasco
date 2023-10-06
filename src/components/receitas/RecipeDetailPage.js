@@ -37,9 +37,11 @@ const RecipeDetailPage = ({ recipe, onClose }) => {
             </View>
           ))}
           </View>
+          <View style={styles.buttonClose}>
           <TouchableOpacity onPress={onClose} style={styles.divClose}>
             <Text style={styles.color}>Fechar</Text>
           </TouchableOpacity>
+          </View>
         </View>
         </ScrollView>
       </View>
@@ -107,6 +109,12 @@ const styles = StyleSheet.create({
   },
   color: {
     color: '#fff',
+  },
+  buttonClose: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf:'center',
   }
 });
 
