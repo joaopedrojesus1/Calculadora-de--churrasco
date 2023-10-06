@@ -236,8 +236,7 @@ export default function PedidosScreen({navigation}) {
             {renderMeatCheckbox("Coxão Duro", coxaoDuroChecked, setCoxaoDuroChecked)}
             {renderMeatCheckbox("Bisteca", bistecaChecked, setBistecaChecked)}
             {renderMeatCheckbox("Contra Filé", contraFileChecked, setContraFileChecked)}
-            
-            {/* Outras opções de carne podem ser adicionadas aqui */}
+        
           </View>
         )}
         {/* ***************************************************************************************** */}
