@@ -63,7 +63,7 @@ export default function ExtratoScreen({ route }) {
   const totalBebidasAlcoolicas = calcularCustoBebidasAlcoolica() * (homens + mulheres);
   const totalAcompanhamentos = calcularCustoAcompanhamentos() * (homens + mulheres + criancas);
   const totalMaterialConsumo = calcularCustoMaterialConsumo() * (homens + mulheres + criancas);
-  const valorTotal = totalCarnes + totalBebidas + totalAcompanhamentos + totalMaterialConsumo;
+  const valorTotal = totalCarnes + totalBebidas + totalBebidasNAlcoolicas + totalAcompanhamentos + totalMaterialConsumo;
   const totalBebidas = totalBebidasNAlcoolicas + totalBebidasAlcoolicas;
 
   // Calcular PESAGEM COPOS
@@ -116,7 +116,7 @@ export default function ExtratoScreen({ route }) {
     );
    }
 
-  // Calcular PESAGEM TALHERES
+  // Calcular PESAGEM ACENDEDOR
   let acendedorText = null;
   if (acendedoresChecked) {
     pesagemAcendedorPorPessoa = 1;
@@ -155,6 +155,46 @@ export default function ExtratoScreen({ route }) {
         <Text style={styles.description}>Pão de Alho - {pesoTotalPaoDeAlho} Unidades</Text>
       );
     }
+
+    // Calcular PESAGEM BEBIDA ALCOOLICA
+    let alcoolicaText = null;
+    if (alcoolicaChecked) {
+      pesagemAlcoolicaPorPessoa = 3;
+      pesoTotalAlcoolica = pesagemAlcoolicaPorPessoa * (homens + mulheres)
+      alcoolicaText = (
+        <Text style={styles.description}>Bebida Alcóolica - {pesoTotalAlcoolica} Latas</Text>
+      );
+    }
+
+    // Calcular PESAGEM AGUA
+    let aguaText = null;
+    if (aguaChecked) {
+      pesagemAguaPorPessoa = 0.5;
+      pesoTotalAgua = pesagemAguaPorPessoa * (homens + mulheres + criancas)
+      aguaText = (
+        <Text style={styles.description}>Água - {pesoTotalAgua} L</Text>
+      );
+    }
+
+    // Calcular PESAGEM REFRIGERANTE
+    let refrigeranteText = null;
+    if (refrigeranteChecked) {
+      pesagemRefrigerantePorPessoa = 0.5;
+      pesoTotalRefrigerante = pesagemRefrigerantePorPessoa * (homens + mulheres + criancas)
+      refrigeranteText = (
+        <Text style={styles.description}>Refrigerante - {pesoTotalRefrigerante} L</Text>
+      );
+    }
+
+    // Calcular PESAGEM SUCO
+    let sucoText = null;
+    if (sucoChecked) {
+      pesagemSucoPorPessoa = 0.2;
+      pesoTotalSuco = pesagemSucoPorPessoa * (homens + mulheres + criancas)
+      sucoText = (
+        <Text style={styles.description}>Suco - {pesoTotalSuco} L</Text>
+      );
+    }
     
    
 
@@ -175,7 +215,9 @@ export default function ExtratoScreen({ route }) {
           
           <View style={styles.div}>
             <Text style={styles.subtitletext}>Bebidas</Text>
-            <Text style={styles.description}>Example - 1,0 L</Text>
+            {aguaText}
+            {refrigeranteText}
+            {alcoolicaText}
           </View>
           
           <View style={styles.div}>
@@ -201,7 +243,7 @@ export default function ExtratoScreen({ route }) {
             <Text style={styles.description}>Bebidas: R$ {totalBebidas.toFixed(2)}</Text>
             <Text style={styles.description}>Acompanhamentos: R$ {totalAcompanhamentos.toFixed(2)}</Text>
             <Text style={styles.description}>Material de Consumo: R$ {totalMaterialConsumo.toFixed(2)}</Text>
-            <Text style={styles.description}>Valor Total: R$ {valorTotal.toFixed(2)}</Text>
+            <Text style={styles.description}>Valor Total: R$ {(totalCarnes + totalBebidas + totalBebidasNAlcoolicas + totalAcompanhamentos + totalMaterialConsumo).toFixed(2)}</Text>
           </View>
 
 

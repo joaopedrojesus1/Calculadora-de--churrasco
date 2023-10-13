@@ -38,6 +38,8 @@ export default function PedidosScreen({navigation}) {
   const [criancas, setCriancas] = useState(0);
   const [totalParticipants, setTotalParticipants] = useState(0);
   const [carneTipoVisible, setCarneTipoVisible] = useState(false);
+  const [porcoTipoVisible, setPorcoTipoVisible] = useState(false);
+  const [frangoTipoVisible, setFrangoTipoVisible] = useState(false);
 
 
   const handleHomensChange = (value) => {
@@ -64,7 +66,14 @@ export default function PedidosScreen({navigation}) {
   const toggleCarneOptions = () => {
     setCarneTipoVisible(!carneTipoVisible);
   };
-  
+
+  const togglePorcoOptions = () => {
+    setPorcoTipoVisible(!porcoTipoVisible);
+  };
+
+  const toggleFrangoOptions = () => {
+    setFrangoTipoVisible(!frangoTipoVisible);
+  };
   
   
   const handleFinalizarPress = () => {
@@ -222,7 +231,7 @@ export default function PedidosScreen({navigation}) {
             setBistecaChecked(false);
             setContraFileChecked(false);
             setFrangoChecked(false);
-            toggleCarneOptions();
+            togglePorcoOptions();
           }}
         >
           <MaterialCommunityIcon name="pig" size={60} color="#fff" />
@@ -236,12 +245,13 @@ export default function PedidosScreen({navigation}) {
             setBistecaChecked(false);
             setPorcoChecked(false);
             setContraFileChecked(false);
-            toggleCarneOptions();
+            toggleFrangoOptions();
           }}
         >
           <MaterialCommunityIcon name="food-drumstick" size={60} color="#fff" />
           <Text style={styles.meatOptionText}>Frango</Text>
         </TouchableOpacity>
+      </View>
       </View>
       <View style={styles.pickerContainer}>
         {carneTipoVisible && (
@@ -256,6 +266,31 @@ export default function PedidosScreen({navigation}) {
           </Picker>
         )}
       </View>
+      <View style={styles.pickerContainer}>
+        {porcoTipoVisible && (
+          <Picker
+            selectedValue={selectedMeat}
+            style={styles.picker}
+            onValueChange={(itemValue) => setSelectedMeat(itemValue)}
+          >
+            <Picker.Item label="Picanha" value="Picanha" />
+            <Picker.Item label="Linguiça" value="Bisteca" />
+            <Picker.Item label="Coxão Duro" value="Contra Filé" />
+          </Picker>
+        )}
+      </View>
+      <View style={styles.pickerContainer}>
+        {frangoTipoVisible && (
+          <Picker
+            selectedValue={selectedMeat}
+            style={styles.picker}
+            onValueChange={(itemValue) => setSelectedMeat(itemValue)}
+          >
+            <Picker.Item label="Coxa" value="Coxão Duro" />
+            <Picker.Item label="Coração" value="Bisteca" />
+            <Picker.Item label="Asa" value="Contra Filé" />
+          </Picker>
+        )}
       </View>
         {/* ***************************************************************************************** */}
         <Text style={styles.titlebaixo}>Opções de Bebidas</Text>
