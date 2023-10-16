@@ -4,15 +4,19 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native';
 export default function ExtratoScreen({ route }) {
   // Access the selected options from the navigation parameters
   const { selectedOptions } = route.params;
+  const { selectedMeat } = selectedOptions; 
 
   // Calcular Carnes
   const calcularCustoCarnes = () => {
-    const { boiChecked, porcoChecked, frangoChecked } = selectedOptions;
-    let cost = 0;
-    if (boiChecked) cost += 15; // Replace with the actual cost of boi
-    if (porcoChecked) cost += 10; // Replace with the actual cost of porco
-    if (frangoChecked) cost += 8; // Replace with the actual cost of frango
-    return cost;
+    // Calcule o custo com base na carne selecionada
+    const custosCarne = {
+      "Coxão Duro": 15,  // Substitua pelo custo real da carne de boi
+      "Bisteca": 10,     // Substitua pelo custo real da carne de porco
+      "Contra Filé": 8,  // Substitua pelo custo real da carne de frango
+    };
+
+    // Calcule o custo total com base na carne selecionada
+    return custosCarne[selectedMeat] || 0; // Padrão para 0 se a carne não for encontrada
   };
 
   // Calcular Bebidas não Alcoolicas
@@ -20,7 +24,7 @@ export default function ExtratoScreen({ route }) {
     const { aguaChecked, refrigeranteChecked, sucoChecked} = selectedOptions;
     let cost = 0;
     if (aguaChecked) cost += 2; // Replace with the actual cost of agua
-    if (refrigeranteChecked) cost += 3; // Replace with the actual cost of refrigerante
+    if (refrigeranteChecked) cost += 5; // Replace with the actual cost of refrigerante
     if (sucoChecked) cost += 4; // Replace with the actual cost of suco
     return cost;
   };
@@ -29,7 +33,7 @@ export default function ExtratoScreen({ route }) {
   const calcularCustoBebidasAlcoolica = () => {
     const { alcoolicaChecked } = selectedOptions;
     let cost = 0;
-    if (alcoolicaChecked) cost += 5; // Replace with the actual cost of alcoolica
+    if (alcoolicaChecked) cost += 15; // Replace with the actual cost of alcoolica
     return cost;
   };
 
@@ -37,9 +41,9 @@ export default function ExtratoScreen({ route }) {
   const calcularCustoAcompanhamentos = () => {
     const { arrozChecked, farofaChecked, paodealhoChecked } = selectedOptions;
     let cost = 0;
-    if (arrozChecked) cost += 5; // Replace with the actual cost of arroz
-    if (farofaChecked) cost += 4; // Replace with the actual cost of farofa
-    if (paodealhoChecked) cost += 3; // Replace with the actual cost of paodealho
+    if (arrozChecked) cost += 1; // Replace with the actual cost of arroz
+    if (farofaChecked) cost += 1.5; // Replace with the actual cost of farofa
+    if (paodealhoChecked) cost += 5; // Replace with the actual cost of paodealho
     return cost;
   };
 
@@ -47,22 +51,29 @@ export default function ExtratoScreen({ route }) {
   const calcularCustoMaterialConsumo = () => {
     const { copoChecked, guardanapoChecked, carvaoChecked, pratosChecked, talheresChecked, acendedoresChecked } = selectedOptions;
     let cost = 0;
-    if (copoChecked) cost += 1; // Replace with the actual cost of copo
-    if (guardanapoChecked) cost += 2; // Replace with the actual cost of guardanapo
-    if (carvaoChecked) cost += 10; // Replace with the actual cost of carvao
-    if (pratosChecked) cost += 2; // Replace with the actual cost of pratos
-    if (talheresChecked) cost += 3; // Replace with the actual cost of talheres
-    if (acendedoresChecked) cost += 5; // Replace with the actual cost of acendedores
+    if (copoChecked) cost += 0.25; // Replace with the actual cost of copo
+    if (guardanapoChecked) cost += 0.5; // Replace with the actual cost of guardanapo
+    if (pratosChecked) cost += 0.25; // Replace with the actual cost of pratos
+    if (talheresChecked) cost += 0.25; // Replace with the actual cost of talheres
     return cost;
   };
 
+
   // Calcular CUSTO TOTAL
-  const { homens, mulheres, criancas,  copoChecked, guardanapoChecked, carvaoChecked, pratosChecked, talheresChecked, acendedoresChecked,  arrozChecked, farofaChecked, paodealhoChecked, alcoolicaChecked, aguaChecked, refrigeranteChecked, sucoChecked } = selectedOptions;
+  const { homens, mulheres, criancas,  copoChecked, guardanapoChecked, carvaoChecked, pratosChecked, talheresChecked, acendedoresChecked,  arrozChecked, farofaChecked, paodealhoChecked, alcoolicaChecked, aguaChecked, refrigeranteChecked, sucoChecked, coxaoDuroChecked, bistecaChecked, contraFileChecked } = selectedOptions;
   const totalCarnes = calcularCustoCarnes() * (homens + mulheres + criancas);
   const totalBebidasNAlcoolicas = calcularCustoBebidas() * (homens + mulheres + criancas);
   const totalBebidasAlcoolicas = calcularCustoBebidasAlcoolica() * (homens + mulheres);
   const totalAcompanhamentos = calcularCustoAcompanhamentos() * (homens + mulheres + criancas);
-  const totalMaterialConsumo = calcularCustoMaterialConsumo() * (homens + mulheres + criancas);
+  let totalMaterialConsumo = calcularCustoMaterialConsumo() * (homens + mulheres + criancas);
+  if (acendedoresChecked) {
+    totalMaterialConsumo = totalMaterialConsumo + 0.5;
+  };
+  if (carvaoChecked){
+    carvao = (((((homens + mulheres) * 600) + criancas * 300) / 1000) * 6);
+    totalMaterialConsumo = totalMaterialConsumo + carvao;
+  }
+  
   const valorTotal = totalCarnes + totalBebidas + totalBebidasNAlcoolicas + totalAcompanhamentos + totalMaterialConsumo;
   const totalBebidas = totalBebidasNAlcoolicas + totalBebidasAlcoolicas;
 
@@ -89,8 +100,7 @@ export default function ExtratoScreen({ route }) {
   // Calcular PESAGEM CARVÃO
   let carvaoText = null;
   if (carvaoChecked) {
-    pesagemCarvaoPorPessoa = 0.3;
-    pesoTotalCarvao = pesagemCarvaoPorPessoa * (homens + mulheres + criancas)
+    pesoTotalCarvao = (((((homens + mulheres) * 600) + criancas * 300) / 1000) * 1.5) ;
     carvaoText = (
       <Text style={styles.description}>Carvão - {pesoTotalCarvao.toFixed(1)} kg</Text>
     );
@@ -169,7 +179,7 @@ export default function ExtratoScreen({ route }) {
     // Calcular PESAGEM AGUA
     let aguaText = null;
     if (aguaChecked) {
-      pesagemAguaPorPessoa = 0.5;
+      pesagemAguaPorPessoa = 0.5; //CALCULADO EM RELAÇÃO A GARRAFAS DE AGUA DE 500 ML
       pesoTotalAgua = pesagemAguaPorPessoa * (homens + mulheres + criancas)
       aguaText = (
         <Text style={styles.description}>Água - {pesoTotalAgua} L</Text>
@@ -213,29 +223,36 @@ export default function ExtratoScreen({ route }) {
             <Text style={styles.description}>Example - 1,0 kg</Text>
           </View>
           
-          <View style={styles.div}>
-            <Text style={styles.subtitletext}>Bebidas</Text>
-            {aguaText}
-            {refrigeranteText}
-            {alcoolicaText}
-          </View>
+          {aguaChecked || refrigeranteChecked || alcoolicaChecked || sucoChecked ? (
+            <View style={styles.div}>
+              <Text style={styles.subtitletext}>Bebidas</Text>
+              {aguaChecked && aguaText}
+              {refrigeranteChecked && refrigeranteText}
+              {alcoolicaChecked && alcoolicaText}
+              {sucoChecked && sucoText}
+            </View>
+          ) : null}
           
-          <View style={styles.div}>
-            <Text style={styles.subtitletext}>Acompanhamentos</Text>
-            {arrozText}
-            {farofaText}
-            {paodealhoText}
-          </View>
+          {arrozChecked || farofaChecked || paodealhoChecked ? (
+            <View style={styles.div}>
+              <Text style={styles.subtitletext}>Acompanhamentos</Text>
+              {arrozChecked && arrozText}
+              {farofaChecked && farofaText}
+              {paodealhoChecked && paodealhoText}
+            </View>
+          ) : null}
 
-          <View style={styles.div}>
-            <Text style={styles.subtitletext}>Material de Consumo</Text>
-            {copoText}
-            {guardanapoText}
-            {carvaoText}
-            {pratoText}
-            {talherText}
-            {acendedorText}
-          </View>
+          {copoChecked || guardanapoChecked || carvaoChecked || pratosChecked || talheresChecked || acendedoresChecked ? (
+            <View style={styles.div}>
+              <Text style={styles.subtitletext}>Material de Consumo</Text>
+              {copoChecked && copoText}
+              {guardanapoChecked && guardanapoText}
+              {carvaoChecked && carvaoText}
+              {pratosChecked && pratoText}
+              {talheresChecked && talherText}
+              {acendedoresChecked && acendedorText}
+            </View>
+          ) : null}
 
           <View style={styles.div}>
             <Text style={styles.subtitletext}>Valor Total</Text>

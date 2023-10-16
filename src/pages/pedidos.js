@@ -14,9 +14,9 @@ export default function PedidosScreen({navigation}) {
   const [bistecaChecked, setBistecaChecked] = useState(false);
   const [contraFileChecked, setContraFileChecked] = useState(false);
   const [selectedMeat, setSelectedMeat] = useState("Coxão Duro");
-  const [selectedBoiMeat, setSelectedBoiMeat] = useState("opção Carne");
-  const [selectedPorcoMeat, setSelectedPorcoMeat] = useState("Opção Porco");
-  const [selectedFrangoMeat, setSelectedFrangoMeat] = useState("Opção Frango");
+  const [selectedBoiMeat, setSelectedBoiMeat] = useState("Contra filé");
+  const [selectedPorcoMeat, setSelectedPorcoMeat] = useState("Bisteca");
+  const [selectedFrangoMeat, setSelectedFrangoMeat] = useState("Asa");
   const [boiChecked, setBoiChecked] = useState(false);
   const [porcoChecked, setPorcoChecked] = useState(false);
   const [frangoChecked, setFrangoChecked] = useState(false);
@@ -101,6 +101,10 @@ export default function PedidosScreen({navigation}) {
     mulheres,
     criancas,
     totalParticipants,
+    coxaoDuroChecked,
+    bistecaChecked,
+    contraFileChecked,
+    selectedMeat,
   };
   
   
@@ -217,7 +221,7 @@ export default function PedidosScreen({navigation}) {
             setBistecaChecked(false);
             setPorcoChecked(false);
             setFrangoChecked(false);
-            toggleCarneOptions(); // Atualizar a visibilidade das opções de carne
+            toggleCarneOptions(); // visibilidade das opções de carne
           }}
         >
           <MaterialCommunityIcon name="cow" size={60} color="#fff" />
