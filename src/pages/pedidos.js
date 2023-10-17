@@ -7,16 +7,13 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { FontAwesome5 } from '@expo/vector-icons'; 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 
 export default function PedidosScreen({navigation}) {
   const [coxaoDuroChecked, setCoxaoDuroChecked] = useState(false);
   const [bistecaChecked, setBistecaChecked] = useState(false);
   const [contraFileChecked, setContraFileChecked] = useState(false);
-  const [selectedMeat, setSelectedMeat] = useState("Coxão Duro");
-  const [selectedBoiMeat, setSelectedBoiMeat] = useState("Contra filé");
-  const [selectedPorcoMeat, setSelectedPorcoMeat] = useState("Bisteca");
-  const [selectedFrangoMeat, setSelectedFrangoMeat] = useState("Asa");
   const [boiChecked, setBoiChecked] = useState(false);
   const [porcoChecked, setPorcoChecked] = useState(false);
   const [frangoChecked, setFrangoChecked] = useState(false);
@@ -41,6 +38,14 @@ export default function PedidosScreen({navigation}) {
   const [porcoTipoVisible, setPorcoTipoVisible] = useState(false);
   const [frangoTipoVisible, setFrangoTipoVisible] = useState(false);
 
+  const [selectedOption, setSelectedOptions] = useState({
+    coxaoDuroChecked: false,
+    bistecaChecked: false,
+    contraFileChecked: false,
+    picanhaChecked: false,
+    linguiçaChecked: false,
+  });
+  
 
   const handleHomensChange = (value) => {
     if (value + mulheres + criancas <= 50) {
@@ -63,22 +68,70 @@ export default function PedidosScreen({navigation}) {
     }
   };
 
+  const handleCoxaoDuroCheck = () => {
+    setCoxaoDuroChecked(!coxaoDuroChecked); // Inverta o estado da checkbox
+    // Atualize o objeto selectedOptions para refletir a seleção do usuário
+    const updatedSelectedOptions = {
+      ...selectedOption,
+      coxaoDuroChecked: !coxaoDuroChecked, // Configura como true se estava marcada, ou false se não estava
+    };
+    setSelectedOptions(updatedSelectedOptions);
+  };
+  
+  const handleBistecaCheck = () => {
+    setBistecaChecked(!bistecaChecked);
+    const updatedSelectedOptions = {
+      ...selectedOption,
+      bistecaChecked: !bistecaChecked,
+    };
+    setSelectedOptions(updatedSelectedOptions);
+  };
+  
+  const handleContraFileCheck = () => {
+    setContraFileChecked(!contraFileChecked);
+    const updatedSelectedOptions = {
+      ...selectedOption,
+      contraFileChecked: !contraFileChecked,
+    };
+    setSelectedOptions(updatedSelectedOptions);
+  };
+  
+  const handlePicanhaCheck = () => {
+    setPicanhaChecked(!picanhaChecked);
+    const updatedSelectedOptions = {
+      ...selectedOption,
+      picanhaChecked: !picanhaChecked,
+    };
+    setSelectedOptions(updatedSelectedOptions);
+  };
+  
+  const handleLinguiçaCheck = () => {
+    setLinguiçaChecked(!linguiçaChecked);
+    const updatedSelectedOptions = {
+      ...selectedOption,
+      linguiçaChecked: !linguiçaChecked,
+    };
+    setSelectedOptions(updatedSelectedOptions);
+  };
+  
   const toggleCarneOptions = () => {
     setCarneTipoVisible(!carneTipoVisible);
   };
-
+  
   const togglePorcoOptions = () => {
     setPorcoTipoVisible(!porcoTipoVisible);
   };
-
+  
   const toggleFrangoOptions = () => {
     setFrangoTipoVisible(!frangoTipoVisible);
   };
   
-  
   const handleFinalizarPress = () => {
     navigation.navigate('Extrato', { selectedOptions });
   };
+
+ 
+
 
   const selectedOptions = {
     boiChecked,
@@ -100,14 +153,9 @@ export default function PedidosScreen({navigation}) {
     homens,
     mulheres,
     criancas,
-    totalParticipants,
-    coxaoDuroChecked,
-    bistecaChecked,
-    contraFileChecked,
-    selectedMeat,
-  };
-  
-  
+	    totalParticipants,	
+  }
+
   function renderMeatCheckbox(label, checked, onValueChange) {
     return (
       <View style={styles.checkboxRow} key={label}>
@@ -259,43 +307,61 @@ export default function PedidosScreen({navigation}) {
       </View>
       <View style={styles.pickerContainer}>
         {carneTipoVisible && (
-          <Picker
-            selectedValue={selectedMeat}
-            style={styles.picker}
-            onValueChange={(itemValue) => setSelectedMeat(itemValue)}
-          >
-            <Picker.Item label="Coxão Duro" value="Coxão Duro" />
-            <Picker.Item label="Bisteca" value="Bisteca" />
-            <Picker.Item label="Contra Filé" value="Contra Filé" />
-          </Picker>
+          <View style={styles.BovinaCutoption}>
+            <Text style={styles.sectionTitle}>Bovina</Text>
+            
+            {/* Checkbox para Coxão Duro */}
+            <View style={styles.checkboxContainer}>
+              <BouncyCheckbox
+                isChecked={coxaoDuroChecked}
+                onPress={handleCoxaoDuroCheck}
+              />
+              <Text style={styles.checkboxLabel}>Coxão Duro</Text>
+                
+              <BouncyCheckbox
+                isChecked={bistecaChecked}
+                onPress={handleBistecaCheck}
+                />
+              <Text style={styles.checkboxLabel}>Bisteca</Text>
+             
+              <BouncyCheckbox
+                isChecked={contraFileChecked}
+                onPress={handleContraFileCheck}
+                />
+              <Text style={styles.checkboxLabel}>Contra Filé</Text>
+            </View>
+          </View>
         )}
-      </View>
-      <View style={styles.pickerContainer}>
-        {porcoTipoVisible && (
-          <Picker
-            selectedValue={selectedMeat}
-            style={styles.picker}
-            onValueChange={(itemValue) => setSelectedMeat(itemValue)}
-          >
-            <Picker.Item label="Picanha" value="Picanha" />
-            <Picker.Item label="Linguiça" value="Bisteca" />
-            <Picker.Item label="Coxão Duro" value="Contra Filé" />
-          </Picker>
-        )}
-      </View>
-      <View style={styles.pickerContainer}>
-        {frangoTipoVisible && (
-          <Picker
-            selectedValue={selectedMeat}
-            style={styles.picker}
-            onValueChange={(itemValue) => setSelectedMeat(itemValue)}
-          >
-            <Picker.Item label="Coxa" value="Coxão Duro" />
-            <Picker.Item label="Coração" value="Bisteca" />
-            <Picker.Item label="Asa" value="Contra Filé" />
-          </Picker>
-        )}
-      </View>
+
+ 
+          {porcoTipoVisible && (
+            <View style={styles.BovinaCutoption}>
+              <Text style={styles.sectionTitle}>Suína</Text>
+              {/* Checkbox para Coxão Duro */}
+              {renderMeatCheckbox("Picanha", picanhaChecked, handlePicanhaCheck)}
+
+              {/* Checkbox para Linguiça */}
+              {renderMeatCheckbox("Linguiça", linguiçaChecked, handleLinguiçaCheck)}
+
+              {/* Checkbox para Contra Filé */}
+              {renderMeatCheckbox("Coxão Duro", coxaoDuroChecked, handleCoxaoDuroCheck)}
+            </View>
+          )}
+          {frangoTipoVisible && (
+            <View style={styles.BovinaCutoption}>
+              <Text style={styles.sectionTitle}>Frango</Text>
+              {/* Checkbox para Coxão Duro */}
+              <BouncyCheckbox />
+              {renderMeatCheckbox("Coxa", coxaoDuroChecked, handleCoxaoDuroCheck)}
+
+              {/* Checkbox para Bisteca */}
+              {renderMeatCheckbox("Coração", bistecaChecked, handleBistecaCheck)}
+
+              {/* Checkbox para Contra Filé */}
+              {renderMeatCheckbox("Asa", contraFileChecked, handleContraFileCheck)}
+            </View>
+          )}
+        </View>
         {/* ***************************************************************************************** */}
         <Text style={styles.titlebaixo}>Opções de Bebidas</Text>
         <Text style={styles.grayText}>Quantas opções desejar</Text>
@@ -619,6 +685,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 10,
     alignSelf:'flex-start',
+  },
+  sectionTitle: {
+    fontWeight: 'bold',
+    fontSize: 30,
+    paddingTop: 30,
+  },
+  checkboxContainer:{
+    display: 'flex',
   }
   
 });
