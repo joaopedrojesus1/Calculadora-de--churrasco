@@ -8,6 +8,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
+
 export default function PedidosScreen({navigation}) {
   const [coxaoDuroChecked, setCoxaoDuroChecked] = useState(false);
   const [bistecaChecked, setBistecaChecked] = useState(false);
@@ -33,6 +34,10 @@ export default function PedidosScreen({navigation}) {
   const [criancas, setCriancas] = useState(0);
   const [totalParticipants, setTotalParticipants] = useState(0);
   const [carneTipoVisible, setCarneTipoVisible] = useState(false);
+  const [porcoTipoVisible, setPorcoTipoVisible] = useState(false);
+  const [frangoTipoVisible, setFrangoTipoVisible] = useState(false);
+  const [picanhaChecked, setPicanhaChecked] = useState(false);
+  const [linguiçaChecked, setLinguiçaChecked] = useState(false);
 
 
   const handleHomensChange = (value) => {
@@ -41,6 +46,53 @@ export default function PedidosScreen({navigation}) {
       setTotalParticipants(value + mulheres + criancas);
     }
   };
+
+  // Funções para controlar as checkboxes de carne
+const handleCoxaoDuroCheck = () => {
+  setCoxaoDuroChecked(!coxaoDuroChecked); // Inverta o estado da checkbox
+  // Atualize o objeto selectedOptions para refletir a seleção do usuário
+  const updatedSelectedOptions = {
+    ...selectedOptions,
+    coxaoDuroChecked: !coxaoDuroChecked, // Configura como true se estava marcada, ou false se não estava
+  };
+  setSelectedOptions(updatedSelectedOptions);
+};
+
+const handleBistecaCheck = () => {
+  setBistecaChecked(!bistecaChecked);
+  const updatedSelectedOptions = {
+    ...selectedOptions,
+    bistecaChecked: !bistecaChecked,
+  };
+  setSelectedOptions(updatedSelectedOptions);
+};
+
+const handleContraFileCheck = () => {
+  setContraFileChecked(!contraFileChecked);
+  const updatedSelectedOptions = {
+    ...selectedOptions,
+    contraFileChecked: !contraFileChecked,
+  };
+  setSelectedOptions(updatedSelectedOptions);
+};
+
+const handlePicanhaCheck = () => {
+  setPicanhaChecked(!picanhaChecked);
+  const updatedSelectedOptions = {
+    ...selectedOptions,
+    picanhaChecked: !picanhaChecked,
+  };
+  setSelectedOptions(updatedSelectedOptions);
+};
+
+const handleLinguiçaCheck = () => {
+  setLinguiçaChecked(!linguiçaChecked);
+  const updatedSelectedOptions = {
+    ...selectedOptions,
+    linguiçaChecked: !linguiçaChecked,
+  };
+  setSelectedOptions(updatedSelectedOptions);
+};
 
   const handleMulheresChange = (value) => {
     if (homens + value + criancas <= 50) {
@@ -60,7 +112,13 @@ export default function PedidosScreen({navigation}) {
     setCarneTipoVisible(!carneTipoVisible);
   };
   
+  const togglePorcoOptions = () => {
+    setPorcoTipoVisible(!porcoTipoVisible);
+  };
   
+  const toggleFrangoOptions = () => {
+    setFrangoTipoVisible(!frangoTipoVisible);
+  };
   
   const handleFinalizarPress = () => {
     navigation.navigate('Extrato', { selectedOptions });
@@ -211,7 +269,8 @@ export default function PedidosScreen({navigation}) {
           <TouchableOpacity
             style={[styles.meatOption, porcoChecked && styles.checked]}
             onPress={() => {
-              setPorcoChecked(!porcoChecked);           
+              setPorcoChecked(!porcoChecked);  
+              togglePorcoOptions();         
             }}
           >
             <MaterialCommunityIcon name="pig" size={60} color="#fff" />
@@ -223,7 +282,8 @@ export default function PedidosScreen({navigation}) {
           <TouchableOpacity
             style={[styles.meatOption, frangoChecked && styles.checked]}
             onPress={() => {
-              setFrangoChecked(!frangoChecked);           
+              setFrangoChecked(!frangoChecked); 
+              toggleFrangoOptions();          
             }}
           >
             <MaterialCommunityIcon name="food-drumstick" size={60} color="#fff" />
@@ -232,11 +292,43 @@ export default function PedidosScreen({navigation}) {
         </View>
         {carneTipoVisible && (
           <View style={styles.BovinaCutoption}>
-            {/* Opções de carne */}
-            {renderMeatCheckbox("Coxão Duro", coxaoDuroChecked, setCoxaoDuroChecked)}
-            {renderMeatCheckbox("Bisteca", bistecaChecked, setBistecaChecked)}
-            {renderMeatCheckbox("Contra Filé", contraFileChecked, setContraFileChecked)}
-        
+            <Text style={styles.sectionTitle}>Bovina</Text>
+            {/* Checkbox para Coxão Duro */}
+            {renderMeatCheckbox("Coxão Duro", coxaoDuroChecked, handleCoxaoDuroCheck)}
+
+            {/* Checkbox para Bisteca */}
+            {renderMeatCheckbox("Bisteca", bistecaChecked, handleBistecaCheck)}
+
+            {/* Checkbox para Contra Filé */}
+            {renderMeatCheckbox("Contra Filé", contraFileChecked, handleContraFileCheck)}
+          </View>
+        )}
+        {porcoTipoVisible && (
+          <View style={styles.BovinaCutoption}>
+            <Text style={styles.sectionTitle}>Suína</Text>
+            {/* Checkbox para Coxão Duro */}
+            {renderMeatCheckbox("Picanha", picanhaChecked, handlePicanhaCheck)}
+
+            {/* Checkbox para Linguiça */}
+            {renderMeatCheckbox("Linguiça", linguiçaChecked, handleLinguiçaCheck)}
+
+            {/* Checkbox para Contra Filé */}
+            {renderMeatCheckbox("Coxão Duro", coxaoDuroChecked, handleCoxaoDuroCheck)}
+          </View>
+        )}
+        {frangoTipoVisible && (
+          <View style={styles.BovinaCutoption}>
+            <Text style={styles.sectionTitle}>Frango</Text>
+            {/* Checkbox para Coxão Duro */}
+            {renderMeatCheckbox("Coxa", coxaoDuroChecked, handleCoxaoDuroCheck)}
+
+            {/* Checkbox para Bisteca */}
+            {renderMeatCheckbox("Coração", bistecaChecked, handleBistecaCheck)}
+
+            {/* Checkbox para Contra Filé */}
+            {renderMeatCheckbox("Asa", contraFileChecked, handleContraFileCheck)}
+
+            
           </View>
         )}
         {/* ***************************************************************************************** */}
@@ -429,6 +521,17 @@ const styles = StyleSheet.create({
     marginTop: 5,
     textAlign: 'center',
   },
+  checkboxRow: {
+    flexDirection: 'row', // Alinha os elementos na horizontal
+    alignItems: 'center', // Centraliza verticalmente os elementos
+    marginBottom: 10, // Espaçamento inferior entre as checkboxes
+  },
+  Checkbox: {
+    marginRight: 10,
+  },
+  checkboxLabel: {
+    fontSize: 16, // Tamanho da fonte do label
+  },
   squarecomNumeric: {
     flexDirection: 'column',
     alignItems: 'center',
@@ -451,6 +554,7 @@ const styles = StyleSheet.create({
   },
   BovinaCutoption:{
     alignSelf:'flex-start',
+  
   },
   Checkbox:{
     elevation:2,
@@ -553,6 +657,14 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  sectionTitle: {
+    paddingTop: 60,
+    fontSize: 40,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color: 'black', // Cor do título
+    color: '#A5002A',
   },
 });
 
