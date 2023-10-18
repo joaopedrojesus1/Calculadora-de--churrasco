@@ -315,7 +315,7 @@ export default function PedidosScreen({navigation}) {
 
         <View style={styles.meatOptions}>
         <TouchableOpacity
-          style={[styles.meatOption, coxaoDuroChecked && styles.checked]}
+          style={[styles.meatOption, boiChecked && styles.checked]}
           onPress={() => {
             setContraFileChecked(false);
             setBistecaChecked(false);
