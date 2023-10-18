@@ -332,7 +332,7 @@ export default function PedidosScreen({navigation}) {
           style={[styles.meatOption, porcoChecked && styles.checked]}
           onPress={() => {
             setCoxaoDuroChecked(false);
-            setBistecaChecked(false);
+           
             setContraFileChecked(false);
             setFrangoChecked(false);
             togglePorcoOptions();
@@ -346,7 +346,7 @@ export default function PedidosScreen({navigation}) {
           style={[styles.meatOption, frangoChecked && styles.checked]}
           onPress={() => {
             setCoxaoDuroChecked(false);
-            setBistecaChecked(false);
+           
             setPorcoChecked(false);
             setContraFileChecked(false);
             toggleFrangoOptions();

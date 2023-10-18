@@ -72,7 +72,7 @@ export default function ExtratoScreen({ route }) {
   if (carvaoChecked) {
     pesoTotalCarvao = (((((homens + mulheres) * 600) + criancas * 300) / 1000) * 1.5) ;
     carvaoText = (
-      <Text style={styles.description}>Carvão - {pesoTotalCarvao.toFixed(1)} kg</Text>
+      <Text style={styles.description}>Carvão - {pesoTotalCarvao.toLocaleString('pt-BR', {maximumFractionDigits: 2})} kg</Text>
     );
   }
 
@@ -112,7 +112,7 @@ export default function ExtratoScreen({ route }) {
     pesagemArrozPorPessoa = 0.2;
     pesoTotalArroz = pesagemArrozPorPessoa * (homens + mulheres + criancas)
     arrozText = (
-      <Text style={styles.description}>Arroz - {pesoTotalArroz.toFixed(1)} kg</Text>
+      <Text style={styles.description}>Arroz - {pesoTotalArroz.toLocaleString('pt-BR', {maximumFractionDigits: 2})} kg</Text>
     );
   }
 
@@ -122,7 +122,7 @@ export default function ExtratoScreen({ route }) {
       pesagemFarofaPorPessoa = 0.05;
       pesoTotalFarofa = pesagemFarofaPorPessoa * (homens + mulheres + criancas)
       farofaText = (
-        <Text style={styles.description}>Farofa - {pesoTotalFarofa.toFixed(2)} kg</Text>
+        <Text style={styles.description}>Farofa - {pesoTotalFarofa.toLocaleString('pt-BR', {maximumFractionDigits: 2})} kg</Text>
       );
     }
     
@@ -132,7 +132,7 @@ export default function ExtratoScreen({ route }) {
       pesagemPaoDeAlhoPorPessoa = 2;
       pesoTotalPaoDeAlho = pesagemPaoDeAlhoPorPessoa * (homens + mulheres + criancas)
       paodealhoText = (
-        <Text style={styles.description}>Pão de Alho - {pesoTotalPaoDeAlho} Unidades</Text>
+        <Text style={styles.description}>Pão de Alho - {pesoTotalPaoDeAlho.toLocaleString('pt-BR', {maximumFractionDigits: 2})} Unidades</Text>
       );
     }
 
@@ -142,7 +142,7 @@ export default function ExtratoScreen({ route }) {
       pesagemAlcoolicaPorPessoa = 3;
       pesoTotalAlcoolica = pesagemAlcoolicaPorPessoa * (homens + mulheres)
       alcoolicaText = (
-        <Text style={styles.description}>Bebida Alcóolica - {pesoTotalAlcoolica} Latas</Text>
+        <Text style={styles.description}>Bebida Alcóolica - {pesoTotalAlcoolica.toLocaleString('pt-BR', {maximumFractionDigits: 2})} Latas</Text>
       );
     }
 
@@ -152,7 +152,7 @@ export default function ExtratoScreen({ route }) {
       pesagemAguaPorPessoa = 0.5; //CALCULADO EM RELAÇÃO A GARRAFAS DE AGUA DE 500 ML
       pesoTotalAgua = pesagemAguaPorPessoa * (homens + mulheres + criancas)
       aguaText = (
-        <Text style={styles.description}>Água - {pesoTotalAgua} L</Text>
+        <Text style={styles.description}>Água - {pesoTotalAgua.toLocaleString('pt-BR', {maximumFractionDigits: 2})} L</Text>
       );
     }
 
@@ -162,7 +162,7 @@ export default function ExtratoScreen({ route }) {
       pesagemRefrigerantePorPessoa = 0.5;
       pesoTotalRefrigerante = pesagemRefrigerantePorPessoa * (homens + mulheres + criancas)
       refrigeranteText = (
-        <Text style={styles.description}>Refrigerante - {pesoTotalRefrigerante} L</Text>
+        <Text style={styles.description}>Refrigerante - {pesoTotalRefrigerante.toLocaleString('pt-BR', {maximumFractionDigits: 2})} L</Text>
       );
     }
 
@@ -172,7 +172,7 @@ export default function ExtratoScreen({ route }) {
       pesagemSucoPorPessoa = 0.2;
       pesoTotalSuco = pesagemSucoPorPessoa * (homens + mulheres + criancas)
       sucoText = (
-        <Text style={styles.description}>Suco - {pesoTotalSuco} L</Text>
+        <Text style={styles.description}>Suco - {pesoTotalSuco.toLocaleString('pt-BR', {maximumFractionDigits: 2})} L</Text>
       );
     }
 
@@ -214,7 +214,7 @@ export default function ExtratoScreen({ route }) {
       pesoTotalCoxaoDuroPorCrianca = QuantidadePorCriancaCarnes * (criancas)
       totalCoxaoDuro = (pesoTotalCoxaoDuroPorAdulto + pesoTotalCoxaoDuroPorCrianca) / 1000
       coxaoDuroText = (
-        <Text style={styles.description}>Coxão Duro (Bovina) - {totalCoxaoDuro.toFixed(2)} kg</Text>
+        <Text style={styles.description}>Coxão Duro (Bovina) - {totalCoxaoDuro.toLocaleString('pt-BR', {maximumFractionDigits: 2})} kg</Text>
       );
     }
 
@@ -225,7 +225,7 @@ export default function ExtratoScreen({ route }) {
       pesoTotalBistecaPorCrianca = QuantidadePorCriancaCarnes * (criancas)
       totalBisteca = (pesoTotalBistecaPorAdulto + pesoTotalBistecaPorCrianca) / 1000
       bistecaText = (
-        <Text style={styles.description}>Bisteca - {totalBisteca.toFixed(2)} kg</Text>
+        <Text style={styles.description}>Bisteca - {totalBisteca.toLocaleString('pt-BR', {maximumFractionDigits: 2})} kg</Text>
       );
     }
 
@@ -236,7 +236,7 @@ export default function ExtratoScreen({ route }) {
       pesoTotalContraFilePorCrianca = QuantidadePorCriancaCarnes * (criancas)
       totalContraFile = (pesoTotalContraFilePorAdulto + pesoTotalContraFilePorCrianca) / 1000
       contraFileText = (
-        <Text style={styles.description}>Contra File - {totalContraFile.toFixed(2)} kg</Text>
+        <Text style={styles.description}>Contra File - {totalContraFile.toLocaleString('pt-BR', {maximumFractionDigits: 2})} kg</Text>
       );
     }
     
@@ -247,7 +247,7 @@ export default function ExtratoScreen({ route }) {
       pesoTotalPicanhaPorCrianca = QuantidadePorCriancaCarnes * (criancas)
       totalPicanha = (pesoTotalPicanhaPorAdulto + pesoTotalPicanhaPorCrianca) / 1000
       picanhaText = (
-        <Text style={styles.description}>Picanha - {totalPicanha.toFixed(2)} kg</Text>
+        <Text style={styles.description}>Picanha - {totalPicanha.toLocaleString('pt-BR', {maximumFractionDigits: 2})} kg</Text>
       );
     }
 
@@ -258,7 +258,7 @@ export default function ExtratoScreen({ route }) {
       pesoTotalLinguiçaPorCrianca = QuantidadePorCriancaCarnes * (criancas)
       totalLinguiça = (pesoTotalLinguiçaPorAdulto + pesoTotalLinguiçaPorCrianca) / 1000
       linguiçaText = (
-        <Text style={styles.description}>Linguiça - {totalLinguiça.toFixed(2)} kg</Text>
+        <Text style={styles.description}>Linguiça - {totalLinguiça.toLocaleString('pt-BR', {maximumFractionDigits: 2})} kg</Text>
       );
     }
 
@@ -269,7 +269,7 @@ export default function ExtratoScreen({ route }) {
       pesoTotalCoxaPorCrianca = QuantidadePorCriancaCarnes * (criancas)
       totalCoxa = (pesoTotalCoxaPorAdulto + pesoTotalCoxaPorCrianca) / 1000
       coxaText = (
-        <Text style={styles.description}>Coxa - {totalCoxa.toFixed(2)} kg</Text>
+        <Text style={styles.description}>Coxa - {totalCoxa.toLocaleString('pt-BR', {maximumFractionDigits: 2})} kg</Text>
       );
     }
 
@@ -280,7 +280,7 @@ export default function ExtratoScreen({ route }) {
       pesoTotalCoracaoPorCrianca = QuantidadePorCriancaCarnes * (criancas)
       totalCoracao = (pesoTotalCoracaoPorAdulto + pesoTotalCoracaoPorCrianca) / 1000
       coracaoText = (
-        <Text style={styles.description}>Coração - {totalCoracao.toFixed(2)} kg</Text>
+        <Text style={styles.description}>Coração - {totalCoracao.toLocaleString('pt-BR', {maximumFractionDigits: 2})} kg</Text>
       );
     }
 
@@ -291,7 +291,7 @@ export default function ExtratoScreen({ route }) {
       pesoTotalPorcoCoxaoDuroPorCrianca = QuantidadePorCriancaCarnes * (criancas)
       totalPorcoCoxaoDuro = (pesoTotalPorcoCoxaoDuroPorAdulto + pesoTotalPorcoCoxaoDuroPorCrianca) / 1000
       porcoCoxaoDuroText = (
-        <Text style={styles.description}>Coxão Duro (Suina) - {totalPorcoCoxaoDuro.toFixed(2)} kg</Text>
+        <Text style={styles.description}>Coxão Duro (Suina) - {totalPorcoCoxaoDuro.toLocaleString('pt-BR', {maximumFractionDigits: 2})} kg</Text>
       );
     }
 
@@ -302,7 +302,7 @@ export default function ExtratoScreen({ route }) {
       pesoTotalAsaPorCrianca = QuantidadePorCriancaCarnes * (criancas)
       totalAsa = (pesoTotalAsaPorAdulto + pesoTotalAsaPorCrianca) / 1000
       asaText = (
-        <Text style={styles.description}>Asa - {totalAsa.toFixed(2)} kg</Text>
+        <Text style={styles.description}>Asa - {totalAsa.toLocaleString('pt-BR', {maximumFractionDigits: 2})} kg</Text>
       );
     }
 
@@ -397,12 +397,12 @@ export default function ExtratoScreen({ route }) {
 
           <View style={styles.div}>
             <Text style={styles.subtitletext}>Valor Total</Text>
-            <Text style={styles.description}>Carnes: R$ {totalCarnes.toFixed(2)}</Text>
-            <Text style={styles.description}>Bebidas: R$ {totalBebidas.toFixed(2)}</Text>
-            <Text style={styles.description}>Acompanhamentos: R$ {totalAcompanhamentos.toFixed(2)}</Text>
-            <Text style={styles.description}>Material de Consumo: R$ {totalMaterialConsumo.toFixed(2)}</Text>
-            <Text style={styles.description}>Valor Total: R$ {(totalCarnes + totalBebidasAlcoolicas + totalBebidasNAlcoolicas + totalAcompanhamentos + totalMaterialConsumo).toFixed(2)}</Text>
-            <Text style={styles.description}>Valor por Pessoa: R$ {((totalCarnes + totalBebidasAlcoolicas + totalBebidasNAlcoolicas + totalAcompanhamentos + totalMaterialConsumo) / (homens + mulheres + criancas)).toFixed(2)}</Text>
+            <Text style={styles.description}>Carnes: R$ {totalCarnes.toLocaleString('pt-BR', {maximumFractionDigits: 2})}</Text>
+            <Text style={styles.description}>Bebidas: R$ {totalBebidas.toLocaleString('pt-BR', {maximumFractionDigits: 2})}</Text>
+            <Text style={styles.description}>Acompanhamentos: R$ {totalAcompanhamentos.toLocaleString('pt-BR', {maximumFractionDigits: 2})}</Text>
+            <Text style={styles.description}>Material de Consumo: R$ {totalMaterialConsumo.toLocaleString('pt-BR', {maximumFractionDigits: 2})}</Text>
+            <Text style={styles.description}>Valor Total: R$ {(totalCarnes + totalBebidasAlcoolicas + totalBebidasNAlcoolicas + totalAcompanhamentos + totalMaterialConsumo).toLocaleString('pt-BR', {maximumFractionDigits: 2})}</Text>
+            <Text style={styles.description}>Valor por Pessoa: R$ {((totalCarnes + totalBebidasAlcoolicas + totalBebidasNAlcoolicas + totalAcompanhamentos + totalMaterialConsumo) / (homens + mulheres + criancas)).toLocaleString('pt-BR', {maximumFractionDigits: 2})}</Text>
           </View>
 
 
