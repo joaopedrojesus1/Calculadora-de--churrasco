@@ -13,7 +13,13 @@ import BouncyCheckbox from "react-native-bouncy-checkbox";
 export default function PedidosScreen({navigation}) {
   const [coxaoDuroChecked, setCoxaoDuroChecked] = useState(false);
   const [bistecaChecked, setBistecaChecked] = useState(false);
+  const [coxaChecked, setCoxaChecked] = useState(false);
+  const [coracaoChecked, setCoracaoChecked] = useState(false);
+  const [asaChecked, setAsaChecked] = useState(false);
   const [contraFileChecked, setContraFileChecked] = useState(false);
+  const [picanhaChecked, setPicanhaChecked] = useState(false);
+  const [linguiçaChecked, setLinguiçaChecked] = useState(false);
+  const [porcoCoxaoDuroChecked, setPorcoCoxaoDuroChecked] = useState(false);
   const [boiChecked, setBoiChecked] = useState(false);
   const [porcoChecked, setPorcoChecked] = useState(false);
   const [frangoChecked, setFrangoChecked] = useState(false);
@@ -44,6 +50,7 @@ export default function PedidosScreen({navigation}) {
     contraFileChecked: false,
     picanhaChecked: false,
     linguiçaChecked: false,
+    coxaChecked: false,
   });
   
 
@@ -74,6 +81,15 @@ export default function PedidosScreen({navigation}) {
     const updatedSelectedOptions = {
       ...selectedOption,
       coxaoDuroChecked: !coxaoDuroChecked, // Configura como true se estava marcada, ou false se não estava
+    };
+    setSelectedOptions(updatedSelectedOptions);
+  };
+  const handlePorcoCoxaoDuroCheck = () => {
+    setPorcoCoxaoDuroChecked(!porcoCoxaoDuroChecked); // Inverta o estado da checkbox
+    // Atualize o objeto selectedOptions para refletir a seleção do usuário
+    const updatedSelectedOptions = {
+      ...selectedOption,
+      porcoCoxaoDuroChecked: !porcoCoxaoDuroChecked, // Configura como true se estava marcada, ou false se não estava
     };
     setSelectedOptions(updatedSelectedOptions);
   };
@@ -113,6 +129,33 @@ export default function PedidosScreen({navigation}) {
     };
     setSelectedOptions(updatedSelectedOptions);
   };
+
+    const handleCoxaCheck = () => {
+      setCoxaChecked(!coxaChecked);
+      const updatedSelectedOptions = {
+        ...selectedOption,
+        coxaChecked: !coxaChecked,
+      };
+      setSelectedOptions(updatedSelectedOptions);
+    };
+    const handleCoracaoCheck = () => {
+      setCoracaoChecked(!coracaoChecked);
+      const updatedSelectedOptions = {
+        ...selectedOption,
+        coracaoChecked: !coracaoChecked,
+      };
+      setSelectedOptions(updatedSelectedOptions);
+    };
+    const handleAsaCheck = () => {
+      setAsaChecked(!asaChecked);
+      const updatedSelectedOptions = {
+        ...selectedOption,
+        asaChecked: !asaChecked,
+      };
+      setSelectedOptions(updatedSelectedOptions);
+    };
+
+  
   
   const toggleCarneOptions = () => {
     setCarneTipoVisible(!carneTipoVisible);
@@ -153,7 +196,16 @@ export default function PedidosScreen({navigation}) {
     homens,
     mulheres,
     criancas,
-	    totalParticipants,	
+	  totalParticipants,
+    coxaoDuroChecked, 
+    bistecaChecked,
+    contraFileChecked,
+    picanhaChecked,
+    linguiçaChecked,
+    coxaChecked,
+    coracaoChecked,
+    asaChecked,
+    porcoCoxaoDuroChecked,	
   }
 
   function renderMeatCheckbox(label, checked, onValueChange) {
@@ -306,59 +358,104 @@ export default function PedidosScreen({navigation}) {
       </View>
       </View>
       <View style={styles.pickerContainer}>
-        {carneTipoVisible && (
-          <View style={styles.BovinaCutoption}>
-            <Text style={styles.sectionTitle}>Bovina</Text>
-            
-            {/* Checkbox para Coxão Duro */}
-            <View style={styles.checkboxContainer}>
-              <BouncyCheckbox
-                isChecked={coxaoDuroChecked}
-                onPress={handleCoxaoDuroCheck}
-              />
-              <Text style={styles.checkboxLabel}>Coxão Duro</Text>
-                
-              <BouncyCheckbox
-                isChecked={bistecaChecked}
-                onPress={handleBistecaCheck}
-                />
-              <Text style={styles.checkboxLabel}>Bisteca</Text>
-             
-              <BouncyCheckbox
-                isChecked={contraFileChecked}
-                onPress={handleContraFileCheck}
-                />
-              <Text style={styles.checkboxLabel}>Contra Filé</Text>
-            </View>
-          </View>
-        )}
+          {carneTipoVisible && (
+            <View style={styles.BovinaCutoption}>
+              <Text style={styles.sectionTitle}>Bovina</Text>
 
- 
+              <View style={styles.checkboxContainer}>
+                <View style={styles.checkboxRow}>
+                  <BouncyCheckbox
+                    isChecked={coxaoDuroChecked}
+                    onPress={handleCoxaoDuroCheck}
+                    style={styles.BouncyCheckbox}
+                  />
+                  <Text style={styles.checkboxLabel}>Coxão Duro</Text>
+                </View>
+
+                <View style={styles.checkboxRow}>
+                  <BouncyCheckbox
+                    isChecked={bistecaChecked}
+                    onPress={handleBistecaCheck}
+                    style={styles.BouncyCheckbox}
+                  />
+                  <Text style={styles.checkboxLabel}>Bisteca</Text>
+                </View>
+
+                <View style={styles.checkboxRow}>
+                  <BouncyCheckbox
+                    isChecked={contraFileChecked}
+                    onPress={handleContraFileCheck}
+                    style={styles.BouncyCheckbox}
+                  />
+                  <Text style={styles.checkboxLabel}>Contra Filé</Text>
+                </View>
+              </View>
+            </View>
+          )}
           {porcoTipoVisible && (
             <View style={styles.BovinaCutoption}>
               <Text style={styles.sectionTitle}>Suína</Text>
-              {/* Checkbox para Coxão Duro */}
-              {renderMeatCheckbox("Picanha", picanhaChecked, handlePicanhaCheck)}
+              <View style={styles.checkboxContainer}>
+                <View style={styles.checkboxRow}>
+                  <BouncyCheckbox
+                    isChecked={picanhaChecked}
+                    onPress={handlePicanhaCheck}
+                    style={styles.BouncyCheckbox}
+                  />
+                  <Text style={styles.checkboxLabel}>Picanha</Text>
+                </View>
 
-              {/* Checkbox para Linguiça */}
-              {renderMeatCheckbox("Linguiça", linguiçaChecked, handleLinguiçaCheck)}
+                <View style={styles.checkboxRow}>
+                  <BouncyCheckbox
+                    isChecked={linguiçaChecked}
+                    onPress={handleLinguiçaCheck}
+                    style={styles.BouncyCheckbox}
+                  />
+                  <Text style={styles.checkboxLabel}>Linguiça</Text>
+                </View>
 
-              {/* Checkbox para Contra Filé */}
-              {renderMeatCheckbox("Coxão Duro", coxaoDuroChecked, handleCoxaoDuroCheck)}
+                <View style={styles.checkboxRow}>
+                  <BouncyCheckbox
+                    isChecked={porcoCoxaoDuroChecked}
+                    onPress={handlePorcoCoxaoDuroCheck}
+                    style={styles.BouncyCheckbox}
+                  />
+                  <Text style={styles.checkboxLabel}>Coxão Duro</Text>
+                </View>
+              </View>
             </View>
           )}
           {frangoTipoVisible && (
             <View style={styles.BovinaCutoption}>
               <Text style={styles.sectionTitle}>Frango</Text>
-              {/* Checkbox para Coxão Duro */}
-              <BouncyCheckbox />
-              {renderMeatCheckbox("Coxa", coxaoDuroChecked, handleCoxaoDuroCheck)}
+              <View style={styles.checkboxContainer}>
+                <View style={styles.checkboxRow}>
+                  <BouncyCheckbox
+                    isChecked={coxaChecked}
+                    onPress={handleCoxaCheck}
+                    style={styles.BouncyCheckbox}
+                  />
+                  <Text style={styles.checkboxLabel}>Coxa</Text>
+                </View>
 
-              {/* Checkbox para Bisteca */}
-              {renderMeatCheckbox("Coração", bistecaChecked, handleBistecaCheck)}
+                <View style={styles.checkboxRow}>
+                  <BouncyCheckbox
+                    isChecked={coracaoChecked}
+                    onPress={handleCoracaoCheck}
+                    style={styles.BouncyCheckbox}
+                  />
+                  <Text style={styles.checkboxLabel}>Coração</Text>
+                </View>
 
-              {/* Checkbox para Contra Filé */}
-              {renderMeatCheckbox("Asa", contraFileChecked, handleContraFileCheck)}
+                <View style={styles.checkboxRow}>
+                  <BouncyCheckbox
+                    isChecked={asaChecked}
+                    onPress={handleAsaCheck}
+                    style={styles.BouncyCheckbox}
+                  />
+                  <Text style={styles.checkboxLabel}>Asa</Text>
+                </View>
+              </View>
             </View>
           )}
         </View>
@@ -578,6 +675,18 @@ const styles = StyleSheet.create({
   Checkbox:{
     elevation:2,
   },
+  BouncyCheckbox:{
+    alignSelf:'center',
+  },
+  checkboxRow:{
+    marginTop:20,
+    marginBottom:20,
+    alignSelf:'center',
+  },
+  checkboxLabel:{
+    fontSize:20,
+    textAlign:'left'
+  },
   meatOptionText: {
     color: '#fff',
     fontSize: 16,
@@ -690,9 +799,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 30,
     paddingTop: 30,
+    alignSelf:"center",
+    marginBottom:5
   },
-  checkboxContainer:{
+  checkboxRow:{
     display: 'flex',
+    flexDirection: 'row',
+    paddingTop: 8,
   }
   
 });
