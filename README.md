@@ -1,5 +1,5 @@
 # Calculadora de churrasco
-<img src="/images/logo.png">
+<img src="/images/logo2.png">
 Antes de tudo, esse projeto teve como finalidade produzir um app de calculaora de churrasco.
 
 
