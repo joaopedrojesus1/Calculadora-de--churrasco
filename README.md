@@ -1,5 +1,5 @@
 <div style="background-color: #A4EA4F;">
-  
+  ## Portuguese Version
   # Calculadora de churrasco
   <img src="/images/logo2.png">
   Antes de tudo, esse projeto teve como finalidade produzir um app de calculadora de churrasco, tema proposto pelo Professor Atila da instituição Senai Suiço Brasileira.
