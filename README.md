@@ -1,6 +1,6 @@
   # Calculadora de churrasco
   <img src="/images/logo2.png"><br>
-  Antes de tudo, esse projeto teve como finalidade produzir um app de calculadora de churrasco, tema proposto pelo Professor Atila da instituição Senai Suiço Brasileira.
+  Antes de tudo, esse projeto teve como finalidade produzir um app de calculadora de churrasco, tema proposto pelo Professor Atila da instituição Senai Suiço Brasileira.<br><br>
   
   ### Portuguese Version
   ## Requisitos Funcionais
