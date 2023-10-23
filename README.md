@@ -10,7 +10,7 @@ Exibir o valor total gasto por:<br>
 - Carnes;<br>
 - Bebidas;<br>
 - Material de Consumo;<br>
-- Locação do local para o evento;(Aqui nós colocamos um mapa da localização do churrasco).<br>
+- Locação do local para o evento;(Aqui nós colocamos um mapa da localização do churrasco).
 
 É exibido o mapa da Localização do Churrasco, como foi citado acima.<br>
 Oferecemos no mínimo 3 opções de carne. *Exemplo(Suína, Bovina e Frango)*<br>
