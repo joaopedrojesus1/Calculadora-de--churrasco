@@ -1,5 +1,5 @@
-<img src="/assets/img/arquivo.gif">
 # Calculadora de churrasco
+<img src="/assets/img/arquivo.gif">
 Antes de tudo, esse projeto teve como finalidade produzir um app de calculaora de churrasco.
 
 
