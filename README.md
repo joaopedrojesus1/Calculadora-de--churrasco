@@ -14,7 +14,7 @@ Exibir o valor total gasto por:<br>
 É exibido o mapa da Localização do Churrasco, como foi citado acima.<br>
 Oferecemos no mínimo 3 opções de carne. *Exemplo(Suína, Bovina e Frango)*<br>
 Oferecemos no mínimo 3 tipos de carne.
-*Exemplo: - Bovina: Coxão Duro, Contra filé, maminha;<br>
+*Exemplo:<br> - Bovina: Coxão Duro, Contra filé, maminha;<br>
           - Suína: Picanha, linguiça, Paleta;<br>
           - Frango: coração, Coxa, Asa;*<br>
 Oferecemos no mínimo 3 opções de Bebidas. *Exemplo(Água, Refrigerante e Cerveja)*<br>
