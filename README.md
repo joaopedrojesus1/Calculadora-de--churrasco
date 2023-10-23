@@ -1,10 +1,9 @@
   # Calculadora de churrasco
 <div style="background-color: #A4EA4F;">
-  ## Portuguese Version
   <img src="/images/logo2.png">
   Antes de tudo, esse projeto teve como finalidade produzir um app de calculadora de churrasco, tema proposto pelo Professor Atila da instituição Senai Suiço Brasileira.
   
-  
+  ### Portuguese Version
   ## Requisitos Funcionais
   Foi inserido na calculadora o consumo individual e total de carnes e bebidas.<br>
   cálculo do rateio por pessoa com o churrasco.<br>
