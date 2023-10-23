@@ -1,5 +1,5 @@
   # Calculadora de churrasco
-  <img src="/images/logo2.png">
+  <img src="/images/logo2.png"><br>
   Antes de tudo, esse projeto teve como finalidade produzir um app de calculadora de churrasco, tema proposto pelo Professor Atila da instituição Senai Suiço Brasileira.
   
   ### Portuguese Version
