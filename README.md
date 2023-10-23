@@ -6,7 +6,7 @@ Antes de tudo, esse projeto teve como finalidade produzir um app de calculadora 
 ## Requisitos Funcionais
 Foi inserido na calculadora o consumo individual e total de carnes e bebidas.<br>
 cálculo do rateio por pessoa com o churrasco.<br>
-Exibir o valor total gasto por:<br>
+E exibição do valor total gasto por:<br>
 - Carnes;<br>
 - Bebidas;<br>
 - Material de Consumo;<br>
