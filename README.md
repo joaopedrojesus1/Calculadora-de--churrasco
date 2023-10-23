@@ -22,7 +22,30 @@
   
   Também oferecemos no mínimo 3 opções de Bebidas. *Exemplo(Água, Refrigerante e Cerveja)*<br>
   Colocamos uma receita para cada tipo de carne afim de ajudar o usuário na escolha de uma receita.<br>
-  E destacamos as informações do local e contato do responsável pelo evento(Falso/Teste).
+  E destacamos as informações do local e contato do responsável pelo evento(Falso/Teste).<br><br><br>
+
+  ### English Version
+  ## Functional Requirements
+  The individual and total consumption of meat and drinks was entered into the calculator.<br>
+  calculation of the apportionment per person with the barbecue.<br>
+  And display of the total amount spent by:<br>
+  - Meat;<br>
+  - Drinks;<br>
+  - Consumable Material;<br>
+  - Rental of the venue for the event; (Here we include a map of the barbecue location).
+  
+  <br>The Barbecue Location map is displayed, as mentioned above.<br>
+  We offer at least 3 meat options. *Example(Pork, Beef and Chicken)*<br>
+  We offer at least 3 types of meat.
+  Example:<br>
+  - Beef: Hard thigh, Sirloin, breast;<br>
+  - Pork: Picanha, sausage, Paleta;<br>
+  - Chicken: heart, thigh, wing;<br>
+  
+  We also offer at least 3 drink options. *Example (Water, Soda and Beer)*<br>
+  We have included a recipe for each type of meat to help the user choose a recipe.<br>
+  And we highlight the location and contact information of the person responsible for the event (False/Test).<br><br><br>
+  
 
 
   
