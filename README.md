@@ -1,3 +1,5 @@
+<div>
+  
 # Calculadora de churrasco
 <img src="/images/logo2.png">
 Antes de tudo, esse projeto teve como finalidade produzir um app de calculadora de churrasco, tema proposto pelo Professor Atila da instituição Senai Suiço Brasileira.
@@ -23,6 +25,7 @@ Exemplo:<br>
 Também oferecemos no mínimo 3 opções de Bebidas. *Exemplo(Água, Refrigerante e Cerveja)*<br>
 Colocamos uma receita para cada tipo de carne afim de ajudar o usuário na escolha de uma receita.<br>
 E destacamos as informações do local e contato do responsável pelo evento(Falso/Teste).
+</div>
 
   
           
