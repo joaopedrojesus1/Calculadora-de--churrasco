@@ -1,2 +1,3 @@
-# Calculadora de churrasco
-## ess
+# Calculadora de churrasco,
+projeto voltado
+
