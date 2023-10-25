@@ -5,7 +5,7 @@
   ## Como Rodar o APP
   Primeiramente vá ao terminal e dê 'npm i/npm install'<br>
   Logo depois, no terminal mesmo, dê 'npm expo start --tunnel' que irá fornecer um qr code.<br>
-  Para rodar esse QrCode voçê deve ir ao seu aparelho celular e baixar pela playstore o 'Expo', nele será possível ler o qrCode fornecido.<r>
+  Para rodar esse QrCode você deve ir ao seu aparelho celular e baixar pela playstore o 'Expo', nele será possível ler o qrCode fornecido.<r>
   ### Portuguese Version
   ## Requisitos Funcionais
   Foi inserido na calculadora o consumo individual e total de carnes e bebidas.<br>
